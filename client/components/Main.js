@@ -10,11 +10,12 @@ export default class Main extends Component {
 
     }
   }
-  render() {
+  render(props) {
+    console.log('props', this.props);
     return (
       <div className="col-9" id="main">
         <Stats />
-        <Results />
+        <Results restaurants={this.props.restaurants} />
         <ShowMore />
       </div>
     )
