@@ -2,8 +2,8 @@ import React from 'react';
 
 export default function ShowMore (props){
   return (
-    <div id="showmore">
+    <button id="showmore">
       Show More
-    </div>
+    </button>
   )
 }

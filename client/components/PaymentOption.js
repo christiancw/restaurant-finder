@@ -1,8 +1,8 @@
 import React from 'react';
 
-export default function CuisineType (props){
+export default function PaymentOption (props){
   return (
-    <div className="cuisine-type">
+    <div className="payment-option">
       {props.type}
       {props.count}
     </div>

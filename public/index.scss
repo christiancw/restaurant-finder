@@ -5,14 +5,40 @@ body {
   font-family: "Helvetica Neue";
 
   #header {
-    background-color: red;
+    background-color: #1C688E;
+  }
+
+  .nav {
+    background-color: #1C688E;
   }
 
   #sidebar {
-    background-color: blue;
+    background-color: white;
+    border: 2px solid gray;
+  }
+
+  #cuisine {
+    border-bottom: 1px solid black;
+  }
+
+  #stars {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    img {
+
+    }
   }
 
   #main {
-    background-color: yellow;
+    background-color: white;
+    border: 2px solid gray;
+    display: flex;
+    flex-direction: column;
+  }
+
+  #showmore {
+    width: 50%;
+    align-self: center;
   }
 }

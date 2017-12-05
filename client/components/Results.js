@@ -6,11 +6,10 @@ export default function Results (props){
   console.log('RESTAURANTS', restaurants);
   return (
     <div id="results">
-      Results
       {
         restaurants.map(function(restaurant){
           return (
-            <ResultItem name={restaurant.name} />
+            <ResultItem key={restaurant.name} name={restaurant.name} />
           );
         })
       }

@@ -10,7 +10,7 @@ export default class Header extends Component {
   }
   render() {
     return (
-      <nav className="navbar navbar-light bg-light" id="header">
+      <nav className="navbar row" id="header">
         <Search />
       </nav>
     )

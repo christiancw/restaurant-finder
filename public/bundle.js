@@ -998,7 +998,7 @@ exports = module.exports = __webpack_require__(17)(undefined);
 
 
 // module
-exports.push([module.i, "body {\n  background-size: cover;\n  width: 100%;\n  margin: 0;\n  font-family: \"Helvetica Neue\"; }\n  body #header {\n    background-color: red; }\n  body #sidebar {\n    background-color: blue; }\n  body #main {\n    background-color: yellow; }\n", ""]);
+exports.push([module.i, "body {\n  background-size: cover;\n  width: 100%;\n  margin: 0;\n  font-family: \"Helvetica Neue\"; }\n  body #header {\n    background-color: #1C688E; }\n  body .nav {\n    background-color: #1C688E; }\n  body #sidebar {\n    background-color: white;\n    border: 2px solid gray; }\n  body #cuisine {\n    border-bottom: 1px solid black; }\n  body #stars {\n    display: flex;\n    flex-direction: column;\n    flex-wrap: nowrap; }\n  body #main {\n    background-color: white;\n    border: 2px solid gray;\n    display: flex;\n    flex-direction: column; }\n  body #showmore {\n    width: 50%;\n    align-self: center; }\n", ""]);
 
 // exports
 
@@ -18885,11 +18885,11 @@ var _Sidebar = __webpack_require__(35);
 
 var _Sidebar2 = _interopRequireDefault(_Sidebar);
 
-var _Main = __webpack_require__(39);
+var _Main = __webpack_require__(43);
 
 var _Main2 = _interopRequireDefault(_Main);
 
-var _dummydata = __webpack_require__(43);
+var _dummydata = __webpack_require__(48);
 
 var _dummydata2 = _interopRequireDefault(_dummydata);
 
@@ -18910,12 +18910,29 @@ var AppContainer = function (_Component) {
     var _this = _possibleConstructorReturn(this, (AppContainer.__proto__ || Object.getPrototypeOf(AppContainer)).call(this, props));
 
     _this.state = _dummydata2.default;
+    _this.setLocation = _this.setLocation.bind(_this);
     return _this;
   }
 
   _createClass(AppContainer, [{
+    key: 'componentWillMount',
+    value: function componentWillMount() {
+      var setLocation = this.setLocation;
+      navigator.geolocation.getCurrentPosition(function (position) {
+        setLocation(position.coords);
+      });
+    }
+  }, {
+    key: 'setLocation',
+    value: function setLocation(coords) {
+      this.setState({
+        userLocation: coords
+      });
+    }
+  }, {
     key: 'render',
     value: function render() {
+      console.log('app state', this.state);
       var restaurants = this.state.restaurants;
       return _react2.default.createElement(
         'div',
@@ -18924,7 +18941,7 @@ var AppContainer = function (_Component) {
         _react2.default.createElement(
           'div',
           { className: 'row' },
-          _react2.default.createElement(_Sidebar2.default, null),
+          _react2.default.createElement(_Sidebar2.default, { results: restaurants }),
           _react2.default.createElement(_Main2.default, { restaurants: restaurants })
         )
       );
@@ -18982,7 +18999,7 @@ var Header = function (_Component) {
     value: function render() {
       return _react2.default.createElement(
         'nav',
-        { className: 'navbar navbar-light bg-light', id: 'header' },
+        { className: 'navbar row', id: 'header' },
         _react2.default.createElement(_Search2.default, null)
       );
     }
@@ -19014,8 +19031,8 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 function Search(props) {
   return _react2.default.createElement(
     "form",
-    { className: "form-inline", id: "search" },
-    _react2.default.createElement("input", { className: "form-control mr-sm-2", type: "search", placeholder: "Search" })
+    { className: "col-12", id: "search" },
+    _react2.default.createElement("input", { className: "form-control", type: "search", placeholder: "Search for Restaurants by Name, Cuisine, Location" })
   );
 }
 
@@ -19040,11 +19057,11 @@ var _Cuisine = __webpack_require__(36);
 
 var _Cuisine2 = _interopRequireDefault(_Cuisine);
 
-var _Stars = __webpack_require__(37);
+var _Stars = __webpack_require__(38);
 
 var _Stars2 = _interopRequireDefault(_Stars);
 
-var _Payment = __webpack_require__(38);
+var _Payment = __webpack_require__(41);
 
 var _Payment2 = _interopRequireDefault(_Payment);
 
@@ -19065,18 +19082,51 @@ var Sidebar = function (_Component) {
     var _this = _possibleConstructorReturn(this, (Sidebar.__proto__ || Object.getPrototypeOf(Sidebar)).call(this, props));
 
     _this.state = {};
+    _this.cuisineCounter = _this.cuisineCounter.bind(_this);
+    _this.paymentCounter = _this.paymentCounter.bind(_this);
     return _this;
   }
 
   _createClass(Sidebar, [{
+    key: 'cuisineCounter',
+    value: function cuisineCounter(restaurantsArr) {
+      var cuisineKinds = {};
+      restaurantsArr.forEach(function (restaurant) {
+        if (cuisineKinds[restaurant.type]) {
+          cuisineKinds[restaurant.type] += 1;
+        } else {
+          cuisineKinds[restaurant.type] = 1;
+        }
+      });
+      return cuisineKinds;
+    }
+  }, {
+    key: 'paymentCounter',
+    value: function paymentCounter(restaurantsArr) {
+      var paymentCards = {};
+      restaurantsArr.forEach(function (restaurant) {
+        restaurant.paymentOptions.forEach(function (paymentOption) {
+          if (paymentCards[paymentOption]) {
+            paymentCards[paymentOption] += 1;
+          } else {
+            paymentCards[paymentOption] = 1;
+          }
+        });
+      });
+      return paymentCards;
+    }
+  }, {
     key: 'render',
     value: function render() {
+      console.log('FILTERRESULTS-->', this.paymentCounter(this.props.results));
+      var filteredResults = this.cuisineCounter(this.props.results);
+      var paymentTypes = this.paymentCounter(this.props.results);
       return _react2.default.createElement(
         'div',
         { className: 'col-3', id: 'sidebar' },
-        _react2.default.createElement(_Cuisine2.default, null),
+        _react2.default.createElement(_Cuisine2.default, { restaurants: filteredResults }),
         _react2.default.createElement(_Stars2.default, null),
-        _react2.default.createElement(_Payment2.default, null)
+        _react2.default.createElement(_Payment2.default, { paymentOptions: paymentTypes })
       );
     }
   }]);
@@ -19102,18 +19152,58 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
+var _CuisineType = __webpack_require__(37);
+
+var _CuisineType2 = _interopRequireDefault(_CuisineType);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function Cuisine(props) {
+  var cuisines = Object.keys(props.restaurants);
+  console.log('CUISINES', props.restaurants);
   return _react2.default.createElement(
-    "div",
-    { id: "cuisine" },
-    "Cuisine/Food Type"
+    'div',
+    { id: 'cuisine' },
+    'Cuisine/Food Type',
+    cuisines.map(function (cuisine) {
+      return _react2.default.createElement(_CuisineType2.default, {
+        key: cuisine,
+        type: cuisine,
+        count: props.restaurants[cuisine]
+      });
+    })
   );
 }
 
 /***/ }),
 /* 37 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = CuisineType;
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function CuisineType(props) {
+  return _react2.default.createElement(
+    "div",
+    { className: "cuisine-type" },
+    props.type,
+    props.count
+  );
+}
+
+/***/ }),
+/* 38 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19128,18 +19218,41 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
+var _starsPlain = __webpack_require__(39);
+
+var _starsPlain2 = _interopRequireDefault(_starsPlain);
+
+var _starsIcons = __webpack_require__(40);
+
+var _starsIcons2 = _interopRequireDefault(_starsIcons);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function Stars(props) {
   return _react2.default.createElement(
-    "div",
-    { id: "stars" },
-    "Rating"
+    'div',
+    { id: 'stars' },
+    'Rating',
+    _react2.default.createElement('img', { src: _starsIcons2.default, alt: 'starIcons', height: '40', width: '100' }),
+    _react2.default.createElement('img', { src: _starsIcons2.default, alt: 'starIcons', height: '40', width: '100' }),
+    _react2.default.createElement('img', { src: _starsIcons2.default, alt: 'starIcons', height: '40', width: '100' })
   );
 }
 
 /***/ }),
-/* 38 */
+/* 39 */
+/***/ (function(module, exports) {
+
+module.exports = "data:image/png;base64,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"
+
+/***/ }),
+/* 40 */
+/***/ (function(module, exports) {
+
+module.exports = "data:image/png;base64,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"
+
+/***/ }),
+/* 41 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19154,18 +19267,57 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
+var _PaymentOption = __webpack_require__(42);
+
+var _PaymentOption2 = _interopRequireDefault(_PaymentOption);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function Payment(props) {
+  var paymentOptions = Object.keys(props.paymentOptions);
   return _react2.default.createElement(
-    "div",
-    { id: "payment" },
-    "Payment Options"
+    'div',
+    { id: 'payment' },
+    'Payment Options',
+    paymentOptions.map(function (cardType) {
+      return _react2.default.createElement(_PaymentOption2.default, {
+        key: cardType,
+        type: cardType,
+        count: props.paymentOptions[cardType]
+      });
+    })
   );
 }
 
 /***/ }),
-/* 39 */
+/* 42 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = PaymentOption;
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function PaymentOption(props) {
+  return _react2.default.createElement(
+    "div",
+    { className: "payment-option" },
+    props.type,
+    props.count
+  );
+}
+
+/***/ }),
+/* 43 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19181,15 +19333,15 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _Stats = __webpack_require__(40);
+var _Stats = __webpack_require__(44);
 
 var _Stats2 = _interopRequireDefault(_Stats);
 
-var _Results = __webpack_require__(41);
+var _Results = __webpack_require__(45);
 
 var _Results2 = _interopRequireDefault(_Results);
 
-var _ShowMore = __webpack_require__(42);
+var _ShowMore = __webpack_require__(47);
 
 var _ShowMore2 = _interopRequireDefault(_ShowMore);
 
@@ -19215,12 +19367,12 @@ var Main = function (_Component) {
 
   _createClass(Main, [{
     key: 'render',
-    value: function render(props) {
+    value: function render() {
       console.log('props', this.props);
       return _react2.default.createElement(
         'div',
         { className: 'col-9', id: 'main' },
-        _react2.default.createElement(_Stats2.default, null),
+        _react2.default.createElement(_Stats2.default, { number: this.props.restaurants.length }),
         _react2.default.createElement(_Results2.default, { restaurants: this.props.restaurants }),
         _react2.default.createElement(_ShowMore2.default, null)
       );
@@ -19233,7 +19385,7 @@ var Main = function (_Component) {
 exports.default = Main;
 
 /***/ }),
-/* 40 */
+/* 44 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19251,15 +19403,17 @@ var _react2 = _interopRequireDefault(_react);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function Stats(props) {
+  var number = props.number;
   return _react2.default.createElement(
     "div",
     { id: "stats" },
-    "34 results found in 0.0002 seconds."
+    number,
+    " results found in 0.0002 seconds."
   );
 }
 
 /***/ }),
-/* 41 */
+/* 45 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19274,7 +19428,7 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _ResultItem = __webpack_require__(44);
+var _ResultItem = __webpack_require__(46);
 
 var _ResultItem2 = _interopRequireDefault(_ResultItem);
 
@@ -19286,92 +19440,14 @@ function Results(props) {
   return _react2.default.createElement(
     'div',
     { id: 'results' },
-    'Results',
     restaurants.map(function (restaurant) {
-      return _react2.default.createElement(_ResultItem2.default, { name: restaurant.name });
+      return _react2.default.createElement(_ResultItem2.default, { key: restaurant.name, name: restaurant.name });
     })
   );
 }
 
 /***/ }),
-/* 42 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = ShowMore;
-
-var _react = __webpack_require__(0);
-
-var _react2 = _interopRequireDefault(_react);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function ShowMore(props) {
-  return _react2.default.createElement(
-    "div",
-    { id: "showmore" },
-    "Show More"
-  );
-}
-
-/***/ }),
-/* 43 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-var results = {
-  restaurants: [{
-    name: 'Anchor and hope',
-    type: 'American',
-    rating: '3',
-    numberofreviews: '10',
-    location: 'New York',
-    price: '$20'
-  }, {
-    name: 'Some other place',
-    type: 'Chinese',
-    rating: '4',
-    numberofreviews: '34',
-    location: 'San Francisco',
-    price: '$30'
-  }, {
-    name: 'Pizza Place',
-    type: 'Italian',
-    rating: '3',
-    numberofreviews: '85',
-    location: 'Chicago',
-    price: '$25'
-  }, {
-    name: 'Sushi Placee',
-    type: 'Japanese',
-    rating: '5',
-    numberofreviews: '3',
-    location: 'New York',
-    price: '$50'
-  }, {
-    name: 'Diner Americana',
-    type: 'American',
-    rating: '3',
-    numberofreviews: '60',
-    location: 'New York',
-    price: '$10'
-  }]
-};
-
-exports.default = results;
-
-/***/ }),
-/* 44 */
+/* 46 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19392,9 +19468,139 @@ function ResultItem(props) {
   return _react2.default.createElement(
     "div",
     { id: "result-item" },
-    props.name
+    _react2.default.createElement(
+      "div",
+      { className: "media" },
+      _react2.default.createElement("img", { className: "align-self-center mr-3", src: "...", alt: "Generic placeholder image" }),
+      _react2.default.createElement(
+        "div",
+        { className: "media-body" },
+        _react2.default.createElement(
+          "h5",
+          { className: "mt-0" },
+          props.name
+        ),
+        _react2.default.createElement(
+          "p",
+          null,
+          "Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus."
+        )
+      )
+    )
   );
 }
+
+/***/ }),
+/* 47 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = ShowMore;
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function ShowMore(props) {
+  return _react2.default.createElement(
+    "button",
+    { id: "showmore" },
+    "Show More"
+  );
+}
+
+/***/ }),
+/* 48 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+var results = {
+  restaurants: [{
+    name: 'Anchor and hope',
+    type: 'American',
+    rating: '3',
+    numberofreviews: '10',
+    location: 'New York',
+    price: '$20',
+    paymentOptions: ['AMEX', 'Discover', 'MasterCard', 'Visa']
+  }, {
+    name: 'Some other place',
+    type: 'Chinese',
+    rating: '4',
+    numberofreviews: '34',
+    location: 'San Francisco',
+    price: '$30',
+    paymentOptions: ['AMEX', 'MasterCard']
+
+  }, {
+    name: 'Pizza Place',
+    type: 'Italian',
+    rating: '3',
+    numberofreviews: '85',
+    location: 'Chicago',
+    price: '$25',
+    paymentOptions: ['Discover', 'MasterCard', 'Visa']
+
+  }, {
+    name: 'Sushi Placee',
+    type: 'Japanese',
+    rating: '5',
+    numberofreviews: '3',
+    location: 'New York',
+    price: '$50',
+    paymentOptions: ['AMEX', 'Discover', 'MasterCard', 'Visa']
+
+  }, {
+    name: 'Diner Americana',
+    type: 'American',
+    rating: '3',
+    numberofreviews: '60',
+    location: 'New York',
+    price: '$10',
+    paymentOptions: ['Visa']
+  }, {
+    name: 'Viva la France',
+    type: 'French',
+    rating: '3',
+    numberofreviews: '34',
+    location: 'Paris',
+    price: '$100',
+    paymentOptions: ['AMEX', 'Discover']
+
+  }, {
+    name: 'Hamburger Heaven',
+    type: 'American',
+    rating: '2',
+    numberofreviews: '41',
+    location: 'Chicago',
+    price: '$19',
+    paymentOptions: ['AMEX', 'Visa']
+
+  }, {
+    name: 'Spaghetti and Meatballs',
+    type: 'Italian',
+    rating: '5',
+    numberofreviews: '25',
+    location: 'San Francisco',
+    price: '$45',
+    paymentOptions: ['AMEX', 'Discover', 'Visa']
+  }],
+  userLocation: {}
+};
+
+exports.default = results;
 
 /***/ })
 /******/ ]);
