@@ -5,7 +5,7 @@ export default function Payment (props){
   const paymentOptions = Object.keys(props.paymentOptions);
   return (
     <div id="payment">
-      Payment Options
+      <h6>Payment Options</h6>
       {
         paymentOptions.map(function(cardType){
           return (

@@ -19164,7 +19164,11 @@ function Cuisine(props) {
   return _react2.default.createElement(
     'div',
     { id: 'cuisine' },
-    'Cuisine/Food Type',
+    _react2.default.createElement(
+      'h6',
+      null,
+      'Cuisine/Food Type'
+    ),
     cuisines.map(function (cuisine) {
       return _react2.default.createElement(_CuisineType2.default, {
         key: cuisine,
@@ -19232,7 +19236,11 @@ function Stars(props) {
   return _react2.default.createElement(
     'div',
     { id: 'stars' },
-    'Rating',
+    _react2.default.createElement(
+      'h6',
+      null,
+      'Rating'
+    ),
     _react2.default.createElement('img', { src: _starsIcons2.default, alt: 'starIcons', height: '40', width: '100' }),
     _react2.default.createElement('img', { src: _starsIcons2.default, alt: 'starIcons', height: '40', width: '100' }),
     _react2.default.createElement('img', { src: _starsIcons2.default, alt: 'starIcons', height: '40', width: '100' })
@@ -19278,7 +19286,11 @@ function Payment(props) {
   return _react2.default.createElement(
     'div',
     { id: 'payment' },
-    'Payment Options',
+    _react2.default.createElement(
+      'h6',
+      null,
+      'Payment Options'
+    ),
     paymentOptions.map(function (cardType) {
       return _react2.default.createElement(_PaymentOption2.default, {
         key: cardType,

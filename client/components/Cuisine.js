@@ -6,7 +6,7 @@ export default function Cuisine (props){
   console.log('CUISINES', props.restaurants);
   return (
     <div id="cuisine">
-      Cuisine/Food Type
+      <h6>Cuisine/Food Type</h6>
       {
         cuisines.map(function(cuisine){
           return (
