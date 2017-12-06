@@ -1,10 +1,10 @@
 import React from 'react';
 
 export default function Stats (props){
-  const number = props.number;
+  const { number, processingTime } = props;
   return (
     <div id="stats">
-      {number} results found in 0.0002 seconds.
+      {number} results found in 0.000{processingTime} seconds.
     </div>
   );
 }

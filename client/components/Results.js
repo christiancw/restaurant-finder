@@ -9,7 +9,10 @@ export default function Results (props){
       {
         restaurants.map(function(restaurant){
           return (
-            <ResultItem key={restaurant.name} name={restaurant.name} />
+            <ResultItem
+              key={restaurant.name}
+              restaurantData={restaurant}
+               />
           );
         })
       }

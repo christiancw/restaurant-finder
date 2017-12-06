@@ -2,8 +2,8 @@ import React from 'react';
 import CuisineType from './CuisineType';
 
 export default function Cuisine (props){
-  const cuisines = Object.keys(props.restaurants);
-  console.log('CUISINES', props.restaurants);
+  const cuisines = Object.keys(props.foodTypes[0].data);
+  console.log('CUISINES', props.foodTypes);
   return (
     <div id="cuisine">
       <h6>Cuisine/Food Type</h6>
@@ -13,7 +13,6 @@ export default function Cuisine (props){
             <CuisineType
               key={cuisine}
               type={cuisine}
-              count={props.restaurants[cuisine]}
               />
           );
         })

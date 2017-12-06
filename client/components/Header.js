@@ -7,11 +7,19 @@ export default class Header extends Component {
     this.state = {
 
     }
+    this.handleSearch = this.handleSearch.bind(this);
   }
+
+  handleSearch(evt){
+    this.props.setQuery(evt.target.value)
+  }
+
   render() {
+    console.log('whats here', this.props)
     return (
       <nav className="navbar row" id="header">
-        <Search />
+        <Search
+          handleSearch={this.handleSearch} />
       </nav>
     )
   }
