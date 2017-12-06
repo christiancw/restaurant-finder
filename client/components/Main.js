@@ -14,8 +14,8 @@ export default class Main extends Component {
     console.log('props', this.props);
     return (
       <div className="col-9" id="main">
-        <Stats number={this.props.restaurants.length} />
-        <Results restaurants={this.props.restaurants} />
+        <Stats number={this.props.searchResults.nbHits} />
+        <Results restaurants={this.props.searchResults.hits} />
         <ShowMore />
       </div>
     )

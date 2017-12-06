@@ -1,5 +1,5 @@
 const results = {
-  restaurants: [
+  searchResults: [
     {
       name: 'Anchor and hope',
       type: 'American',

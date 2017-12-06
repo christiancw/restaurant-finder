@@ -2,13 +2,21 @@ import React, { Component } from 'react';
 import Header from './Header';
 import Sidebar from './Sidebar';
 import Main from './Main';
-import initialState from './dummydata';
+// import initialState from './dummydata';
+
+const initialState = {
+  searchResults: {
+    hits: [],
+    nbHits: 0
+  }
+};
 
 export default class AppContainer extends Component {
   constructor(props){
     super(props);
     this.state = initialState;
     // this.setLocation = this.setLocation.bind(this);
+    this.getSearchResults = this.getSearchResults.bind(this);
   }
 
   // componentWillMount() {
@@ -23,10 +31,21 @@ export default class AppContainer extends Component {
     const algoliasearchHelper = require('algoliasearch-helper');
     const client = algoliasearch('KBNJ9HM3SF', 'ea8fd6f86e6d428e54255b7707770011');
     const helper = algoliasearchHelper(client, 'restaurant_index');
+    const getSearchResults = this.getSearchResults;
     helper.on('result', function(content) {
       console.log(content);
+      getSearchResults(content);
+      // this.setState({
+      //   searchResults: content
+      // });
     });
     helper.search();
+  }
+
+  getSearchResults (content) {
+    this.setState({
+      searchResults: content
+    });
   }
 
   // setLocation(coords){
@@ -34,16 +53,16 @@ export default class AppContainer extends Component {
   //     userLocation: coords
   //   });
   // }
+  // <Sidebar results={restaurants} />
 
   render() {
     console.log('app state', this.state)
-    const restaurants = this.state.restaurants;
+    const searchResults = this.state.searchResults;
     return (
       <div className="container">
         <Header />
         <div className="row">
-          <Sidebar results={restaurants} />
-          <Main restaurants={restaurants} />
+          <Main searchResults={searchResults} />
         </div>
       </div>
     );
