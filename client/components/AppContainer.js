@@ -8,21 +8,32 @@ export default class AppContainer extends Component {
   constructor(props){
     super(props);
     this.state = initialState;
-    this.setLocation = this.setLocation.bind(this);
+    // this.setLocation = this.setLocation.bind(this);
   }
 
-  componentWillMount() {
-    const setLocation = this.setLocation;
-    navigator.geolocation.getCurrentPosition(function(position) {
-      setLocation(position.coords);
+  // componentWillMount() {
+  //   const setLocation = this.setLocation;
+  //   navigator.geolocation.getCurrentPosition(function(position) {
+  //     setLocation(position.coords);
+  //   });
+  // }
+
+  componentDidMount() {
+    const algoliasearch = require('algoliasearch');
+    const algoliasearchHelper = require('algoliasearch-helper');
+    const client = algoliasearch('KBNJ9HM3SF', 'ea8fd6f86e6d428e54255b7707770011');
+    const helper = algoliasearchHelper(client, 'restaurant_index');
+    helper.on('result', function(content) {
+      console.log(content);
     });
+    helper.search();
   }
 
-  setLocation(coords){
-    this.setState({
-      userLocation: coords
-    });
-  }
+  // setLocation(coords){
+  //   this.setState({
+  //     userLocation: coords
+  //   });
+  // }
 
   render() {
     console.log('app state', this.state)

@@ -1,17 +1,29 @@
+require('./secrets');
 const adminKey = process.env.ADMIN_KEY;
 const appId = process.env.APP_ID;
+const chunk = require('lodash.chunk');
 
-const data = require('./combined_data.json');
+const records = require('./combined_data.json');
 
 const algoliasearch = require('algoliasearch');
 
 const client = algoliasearch(appId, adminKey);
-const index = client.initIndex('test_index');
+const index = client.initIndex('restaurant_index');
 
-index.addObjects(data, function(err, content) {
-  if (err) {
-    console.log('there was an error pushing the data');
-    return;
-  }
-  console.log(content);
+const chunks = chunk(records, 1000);
+
+chunks.map(function(batch) {
+  return index.addObjects(batch);
 });
+
+// index.addObjects(data, function(err, content) {
+//   if (err) {
+//     console.log('there was an error pushing the data');
+//     return;
+//   }
+//   console.log(content);
+// });
+
+// index.setSettings({
+//   'attributesForFaceting': ['category', 'author']
+// })
