@@ -7,50 +7,58 @@ export default class Sidebar extends Component {
   constructor(props){
     super(props)
     this.state = {
-
     }
     // this.cuisineCounter = this.cuisineCounter.bind(this);
     // this.paymentCounter = this.paymentCounter.bind(this);
+    // this.helper = this.props.helper;
+    this.handleClick = this.handleClick.bind(this);
   }
 
-  // cuisineCounter (restaurantsArr){
-  //   const cuisineKinds = {};
-  //   restaurantsArr.forEach(restaurant => {
-  //     if (cuisineKinds[restaurant.type]){
-  //       cuisineKinds[restaurant.type] += 1;
-  //     }
-  //     else {
-  //       cuisineKinds[restaurant.type] = 1;
-  //     }
-  //   })
-  //   return cuisineKinds;
-  // }
-  //
-  // paymentCounter (restaurantsArr){
-  //   const paymentCards = {};
-  //   restaurantsArr.forEach(restaurant => {
-  //     restaurant.paymentOptions.forEach(paymentOption => {
-  //       if (paymentCards[paymentOption]){
-  //         paymentCards[paymentOption] += 1;
-  //       }
-  //       else {
-  //         paymentCards[paymentOption] = 1;
-  //       }
-  //     })
-  //   })
-  //   return paymentCards;
-  // }
-  // <Payment paymentOptions={paymentTypes} />
+  componentDidMount(){
+      const types = this.props.searchResults.getFacetValues('food_type', {sortBy: ['count:desc', 'selected']})
+      console.log('calling this function')
+      this.setState({
+        facetValues: types
+      })
+  }
+
+  handleClick(evt){
+    const foodType = evt.target.id;
+    this.props.helper.toggleRefine('food_type', foodType).search()
+    // console.log('what is this', foodType)
+  }
+
+  // const Categories = connect(
+  // state => ({
+  //   categories: state.searchResults &&
+  //     state.searchResults.getFacetValues('category', {sortBy: ['count:desc', 'selected']}) ||
+  //     []
+  // })
+  //   )(
+  // ({categories, helper}) =>
+  //     <ul className="categories">
+  //       {categories.map(
+  //         category =>
+  //           <Category
+  //             key={category.name}
+  //             {...category}
+  //             handleClick={e => helper.toggleRefine('category', category.name).search()}
+  //           />
+  //       )}
+  //     </ul>
+  //     );
 
   render() {
-    // console.log('FILTERRESULTS-->', this.paymentCounter(this.props.results))
-    // const filteredResults = this.cuisineCounter(this.props.results);
-    // const paymentTypes = this.paymentCounter(this.props.results);
-    const foodTypes = this.props.searchResults.facets;
+    console.log('this state', this.state)
+    const foodTypes = this.state.facetValues;
+    const handleClick = this.handleClick;
     return (
       <div className="col-3" id="sidebar">
-        {foodTypes.length > 0 ?
-          <Cuisine foodTypes={foodTypes} />
+        {foodTypes ?
+          <Cuisine
+            foodTypes={foodTypes}
+            handleClick={handleClick}
+             />
         : null}
         <Stars />
       </div>

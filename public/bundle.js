@@ -28285,14 +28285,15 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 // import initialState from './dummydata';
 
-var initialState = {
-  searchResults: {
-    hits: [],
-    nbHits: 0,
-    processingTimeMS: 0,
-    facets: []
-  }
-};
+// const initialState = {
+//   searchResults: {
+//     hits: [],
+//     nbHits: 0,
+//     processingTimeMS: 0,
+//     facets: [],
+//     getFacetValues: {}
+//   }
+// };
 
 var algoliasearch = __webpack_require__(204);
 var algoliasearchHelper = __webpack_require__(225);
@@ -28311,19 +28312,13 @@ var AppContainer = function (_Component) {
 
     var _this = _possibleConstructorReturn(this, (AppContainer.__proto__ || Object.getPrototypeOf(AppContainer)).call(this, props));
 
-    _this.state = initialState;
+    _this.state = {};
     // this.setLocation = this.setLocation.bind(this);
     _this.getSearchResults = _this.getSearchResults.bind(_this);
     _this.setQuery = _this.setQuery.bind(_this);
+    // this.getFacetValues = this.getFacetValues.bind(this)
     return _this;
   }
-
-  // componentWillMount() {
-  //   const setLocation = this.setLocation;
-  //   navigator.geolocation.getCurrentPosition(function(position) {
-  //     setLocation(position.coords);
-  //   });
-  // }
 
   _createClass(AppContainer, [{
     key: 'componentDidMount',
@@ -28335,62 +28330,48 @@ var AppContainer = function (_Component) {
       });
       helper.search();
     }
-
-    // getSearchResults (content) {
-    //   this.setState({
-    //     searchResults: content
-    //   });
-    // }
-
+  }, {
+    key: 'getSearchResults',
+    value: function getSearchResults(content) {
+      this.setState({
+        searchResults: content
+      });
+    }
   }, {
     key: 'setQuery',
     value: function setQuery(queryString) {
       console.log('callt this', queryString);
       helper.setQuery(queryString).search();
     }
-  }, {
-    key: 'gettingfacetValues',
-    value: function gettingfacetValues(returnValue) {
-      this.setState({
-        facetValues: returnValue
-      });
-    }
 
-    // const Categories = connect(
-    // state => ({
-    //   categories: state.searchResults &&
-    //     state.searchResults.getFacetValues('category', {sortBy: ['count:desc', 'selected']}) ||
-    //     []
-    // })
-    //   )(
-    // ({categories, helper}) =>
-    //     <ul className="categories">
-    //       {categories.map(
-    //         category =>
-    //           <Category
-    //             key={category.name}
-    //             {...category}
-    //             handleClick={e => helper.toggleRefine('category', category.name).search()}
-    //           />
-    //       )}
-    //     </ul>
-    //     );
+    // getFacetValues(){
+    //   this.state.searchResults.getFacetValues('food_type', {sortBy: ['count:desc', 'selected']});
+    // }
+
 
   }, {
     key: 'render',
     value: function render() {
       var searchResults = this.state.searchResults;
       var setQuery = this.setQuery;
+      // const getFacetValues = this.getFacetValues;
       return _react2.default.createElement(
         'div',
-        { className: 'container' },
-        _react2.default.createElement(_Header2.default, { setQuery: setQuery }),
-        _react2.default.createElement(
+        null,
+        searchResults ? _react2.default.createElement(
           'div',
-          { className: 'row' },
-          _react2.default.createElement(_Sidebar2.default, { searchResults: searchResults }),
-          _react2.default.createElement(_Main2.default, { searchResults: searchResults })
-        )
+          { className: 'container' },
+          _react2.default.createElement(_Header2.default, { setQuery: setQuery }),
+          _react2.default.createElement(
+            'div',
+            { className: 'row' },
+            _react2.default.createElement(_Sidebar2.default, {
+              searchResults: searchResults,
+              helper: helper
+            }),
+            _react2.default.createElement(_Main2.default, { searchResults: searchResults })
+          )
+        ) : null
       );
     }
   }]);
@@ -28543,49 +28524,61 @@ var Sidebar = function (_Component) {
     _this.state = {};
     // this.cuisineCounter = this.cuisineCounter.bind(this);
     // this.paymentCounter = this.paymentCounter.bind(this);
+    // this.helper = this.props.helper;
+    _this.handleClick = _this.handleClick.bind(_this);
     return _this;
   }
 
-  // cuisineCounter (restaurantsArr){
-  //   const cuisineKinds = {};
-  //   restaurantsArr.forEach(restaurant => {
-  //     if (cuisineKinds[restaurant.type]){
-  //       cuisineKinds[restaurant.type] += 1;
-  //     }
-  //     else {
-  //       cuisineKinds[restaurant.type] = 1;
-  //     }
-  //   })
-  //   return cuisineKinds;
-  // }
-  //
-  // paymentCounter (restaurantsArr){
-  //   const paymentCards = {};
-  //   restaurantsArr.forEach(restaurant => {
-  //     restaurant.paymentOptions.forEach(paymentOption => {
-  //       if (paymentCards[paymentOption]){
-  //         paymentCards[paymentOption] += 1;
-  //       }
-  //       else {
-  //         paymentCards[paymentOption] = 1;
-  //       }
-  //     })
-  //   })
-  //   return paymentCards;
-  // }
-  // <Payment paymentOptions={paymentTypes} />
-
   _createClass(Sidebar, [{
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      var types = this.props.searchResults.getFacetValues('food_type', { sortBy: ['count:desc', 'selected'] });
+      console.log('calling this function');
+      this.setState({
+        facetValues: types
+      });
+    }
+  }, {
+    key: 'handleClick',
+    value: function handleClick(evt) {
+      var foodType = evt.target.id;
+      this.props.helper.toggleRefine('food_type', foodType).search();
+      // console.log('what is this', foodType)
+    }
+
+    // const Categories = connect(
+    // state => ({
+    //   categories: state.searchResults &&
+    //     state.searchResults.getFacetValues('category', {sortBy: ['count:desc', 'selected']}) ||
+    //     []
+    // })
+    //   )(
+    // ({categories, helper}) =>
+    //     <ul className="categories">
+    //       {categories.map(
+    //         category =>
+    //           <Category
+    //             key={category.name}
+    //             {...category}
+    //             handleClick={e => helper.toggleRefine('category', category.name).search()}
+    //           />
+    //       )}
+    //     </ul>
+    //     );
+
+  }, {
     key: 'render',
     value: function render() {
-      // console.log('FILTERRESULTS-->', this.paymentCounter(this.props.results))
-      // const filteredResults = this.cuisineCounter(this.props.results);
-      // const paymentTypes = this.paymentCounter(this.props.results);
-      var foodTypes = this.props.searchResults.facets;
+      console.log('this state', this.state);
+      var foodTypes = this.state.facetValues;
+      var handleClick = this.handleClick;
       return _react2.default.createElement(
         'div',
         { className: 'col-3', id: 'sidebar' },
-        foodTypes.length > 0 ? _react2.default.createElement(_Cuisine2.default, { foodTypes: foodTypes }) : null,
+        foodTypes ? _react2.default.createElement(_Cuisine2.default, {
+          foodTypes: foodTypes,
+          handleClick: handleClick
+        }) : null,
         _react2.default.createElement(_Stars2.default, null)
       );
     }
@@ -28619,7 +28612,8 @@ var _CuisineType2 = _interopRequireDefault(_CuisineType);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function Cuisine(props) {
-  var cuisines = Object.keys(props.foodTypes[0].data);
+  var cuisines = props.foodTypes;
+  var handleClick = props.handleClick;
   console.log('CUISINES', props.foodTypes);
   return _react2.default.createElement(
     'div',
@@ -28631,8 +28625,10 @@ function Cuisine(props) {
     ),
     cuisines.map(function (cuisine) {
       return _react2.default.createElement(_CuisineType2.default, {
-        key: cuisine,
-        type: cuisine
+        key: cuisine.name,
+        type: cuisine.name,
+        count: cuisine.count,
+        handleClick: handleClick
       });
     })
   );
@@ -28657,11 +28653,20 @@ var _react2 = _interopRequireDefault(_react);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function CuisineType(props) {
+  var handleClick = props.handleClick;
   return _react2.default.createElement(
     "div",
     { className: "cuisine-type" },
-    props.type,
-    props.count
+    _react2.default.createElement(
+      "div",
+      { onClick: handleClick, id: props.type },
+      props.type,
+      _react2.default.createElement(
+        "span",
+        null,
+        props.count
+      )
+    )
   );
 }
 

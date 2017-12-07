@@ -4,14 +4,15 @@ import Sidebar from './Sidebar';
 import Main from './Main';
 // import initialState from './dummydata';
 
-const initialState = {
-  searchResults: {
-    hits: [],
-    nbHits: 0,
-    processingTimeMS: 0,
-    facets: []
-  }
-};
+// const initialState = {
+//   searchResults: {
+//     hits: [],
+//     nbHits: 0,
+//     processingTimeMS: 0,
+//     facets: [],
+//     getFacetValues: {}
+//   }
+// };
 
 const algoliasearch = require('algoliasearch');
 const algoliasearchHelper = require('algoliasearch-helper');
@@ -25,18 +26,12 @@ const helper = algoliasearchHelper(client, 'restaurant_index', {
 export default class AppContainer extends Component {
   constructor(props){
     super(props);
-    this.state = initialState;
+    this.state = {};
     // this.setLocation = this.setLocation.bind(this);
     this.getSearchResults = this.getSearchResults.bind(this);
     this.setQuery = this.setQuery.bind(this);
+    // this.getFacetValues = this.getFacetValues.bind(this)
   }
-
-  // componentWillMount() {
-  //   const setLocation = this.setLocation;
-  //   navigator.geolocation.getCurrentPosition(function(position) {
-  //     setLocation(position.coords);
-  //   });
-  // }
 
   componentDidMount() {
     const getSearchResults = this.getSearchResults;
@@ -47,53 +42,40 @@ export default class AppContainer extends Component {
     helper.search();
   }
 
-  // getSearchResults (content) {
-  //   this.setState({
-  //     searchResults: content
-  //   });
-  // }
+  getSearchResults (content) {
+    this.setState({
+      searchResults: content
+    });
+  }
 
   setQuery (queryString) {
     console.log('callt this', queryString)
     helper.setQuery(queryString).search();
   }
 
-  gettingfacetValues(returnValue){
-    this.setState({
-      facetValues: returnValue
-    });
-  }
+  // getFacetValues(){
+  //   this.state.searchResults.getFacetValues('food_type', {sortBy: ['count:desc', 'selected']});
+  // }
 
-  // const Categories = connect(
-  // state => ({
-  //   categories: state.searchResults &&
-  //     state.searchResults.getFacetValues('category', {sortBy: ['count:desc', 'selected']}) ||
-  //     []
-  // })
-  //   )(
-  // ({categories, helper}) =>
-  //     <ul className="categories">
-  //       {categories.map(
-  //         category =>
-  //           <Category
-  //             key={category.name}
-  //             {...category}
-  //             handleClick={e => helper.toggleRefine('category', category.name).search()}
-  //           />
-  //       )}
-  //     </ul>
-  //     );
 
   render() {
     const searchResults = this.state.searchResults;
     const setQuery = this.setQuery;
+    // const getFacetValues = this.getFacetValues;
     return (
-      <div className="container">
-        <Header setQuery={setQuery} />
-        <div className="row">
-          <Sidebar searchResults={searchResults} />
-          <Main searchResults={searchResults} />
-        </div>
+      <div>
+        {searchResults ?
+          <div className="container">
+            <Header setQuery={setQuery} />
+            <div className="row">
+              <Sidebar
+                searchResults={searchResults}
+                helper={helper}
+                />
+              <Main searchResults={searchResults} />
+            </div>
+          </div>
+        : null}
       </div>
     );
   }
