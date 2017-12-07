@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Cuisine from './Cuisine';
-import Stars from './Stars';
+import RatingsFilter from './RatingsFilter';
 import Payment from './Payment';
 
 export default class Sidebar extends Component {
@@ -8,17 +8,14 @@ export default class Sidebar extends Component {
     super(props)
     this.state = {
     }
-    // this.cuisineCounter = this.cuisineCounter.bind(this);
-    // this.paymentCounter = this.paymentCounter.bind(this);
-    // this.helper = this.props.helper;
     this.handleClick = this.handleClick.bind(this);
     this.handlePaymentClick = this.handlePaymentClick.bind(this);
+    this.filterByRating = this.filterByRating.bind(this);
   }
 
   componentDidMount(){
       const foodTypes = this.props.searchResults.getFacetValues('food_type', {sortBy: ['count:desc', 'selected']})
       const paymentTypes = this.props.searchResults.getFacetValues('payment_options', {sortBy: ['count:desc']});
-      console.log('calling this function')
       this.setState({
         foodFacetValues: foodTypes,
         paymentTypes: paymentTypes
@@ -36,32 +33,17 @@ export default class Sidebar extends Component {
     this.props.helper.toggleRefine('payment_options', paymentType).search()
   }
 
-  // const Categories = connect(
-  // state => ({
-  //   categories: state.searchResults &&
-  //     state.searchResults.getFacetValues('category', {sortBy: ['count:desc', 'selected']}) ||
-  //     []
-  // })
-  //   )(
-  // ({categories, helper}) =>
-  //     <ul className="categories">
-  //       {categories.map(
-  //         category =>
-  //           <Category
-  //             key={category.name}
-  //             {...category}
-  //             handleClick={e => helper.toggleRefine('category', category.name).search()}
-  //           />
-  //       )}
-  //     </ul>
-  //     );
+  filterByRating(evt){
+    const starNumber = evt.currentTarget.id;
+    this.props.helper.addNumericRefinement('price', '>', starNumber).search()
+  }
 
   render() {
-    console.log('this state', this.state)
     const foodTypes = this.state.foodFacetValues;
     const handleClick = this.handleClick;
     const paymentTypes = this.state.paymentTypes;
     const handlePaymentClick = this.handlePaymentClick;
+    const filterByRating = this.filterByRating;
     return (
       <div className="col-3" id="sidebar">
         {foodTypes ?
@@ -70,7 +52,7 @@ export default class Sidebar extends Component {
             handleClick={handleClick}
              />
         : null}
-        <Stars />
+        <RatingsFilter filterByRating={filterByRating} />
         {paymentTypes ?
           <Payment
             paymentTypes={paymentTypes}

@@ -22,12 +22,30 @@ body {
   }
 
   #stars {
-    display: flex;
-    flex-direction: column;
-    flex-wrap: nowrap;
-    img {
 
-    }
+  }
+
+  // display: flex;
+  // flex-direction: column;
+  // flex-wrap: nowrap;
+
+  .star-container {
+    position: absolute;
+    height: 15px;
+  }
+
+  .stars-box {
+    display: block;
+    position: static;
+    height: 20px;
+  }
+
+  .empty-star {
+
+  }
+
+  .filled-star {
+    z-index: 1;
   }
 
   .sidebar-option:hover {
@@ -39,6 +57,11 @@ body {
     border: 2px solid gray;
     display: flex;
     flex-direction: column;
+  }
+
+  .first-row {
+    display: flex;
+    justify-content: space-around;
   }
 
   #showmore {

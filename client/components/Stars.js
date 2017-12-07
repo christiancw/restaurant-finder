@@ -1,14 +1,29 @@
 import React from 'react';
+import emptyStar from '../../resources/graphics/star-empty.png'
 import plainStar from '../../resources/graphics/stars-plain.png'
-import starIcons from '../../resources/graphics/stars-icons.png'
 
 export default function Stars (props){
+  const filterByRating = props.filterByRating
+  const starNumber = props.starNumber;
+  const filledStars = [];
+  for (let i = 0; i < starNumber; i++){
+    filledStars.push(plainStar)
+  }
+  console.log('STAR NUMBER->', starNumber);
   return (
-    <div id="stars">
-      <h6>Rating</h6>
-      <img src={starIcons} alt="starIcons" height="40" width="100" />
-      <img src={starIcons} alt="starIcons" height="40" width="100" />
-      <img src={starIcons} alt="starIcons" height="40" width="100" />
-    </div>
+      <div id={starNumber} onClick={filterByRating} className="stars-box sidebar-option">
+        <div className="star-container filled-star">
+          {filledStars.map(() => {
+            return <img src={plainStar} alt="plainStar" height="15" width="15" />;
+          })}
+        </div>
+        <div className="star-container empty-star">
+          <img src={emptyStar} alt="emptyStar" height="15" width="15" />
+          <img src={emptyStar} alt="emptyStar" height="15" width="15" />
+          <img src={emptyStar} alt="emptyStar" height="15" width="15" />
+          <img src={emptyStar} alt="emptyStar" height="15" width="15" />
+          <img src={emptyStar} alt="emptyStar" height="15" width="15" />
+        </div>
+      </div>
   )
 }

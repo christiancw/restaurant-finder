@@ -1,4 +1,5 @@
 import React from 'react';
+import Stars from './Stars'
 
 export default function ResultItem (props){
   const imageURL = props.restaurantData.image_url;
@@ -15,14 +16,27 @@ export default function ResultItem (props){
         <div className="media-body">
           <h5 className="mt-0">{name}</h5>
           <div>
-            {starsCount}
-            <span>
-              {reviewsCount} Reviews
-            </span>
-            <div>
-              {foodType}
-              {priceRange}
-              {neighborhood}
+            <div className="row first-row">
+              <div className="col-2">
+                {starsCount}
+              </div>
+              <div className="col-4">
+                <Stars starNumber={starsCount} />
+              </div>
+              <div className="col-6">
+                ({reviewsCount} Reviews)
+              </div>
+            </div>
+            <div className="row">
+              <div className="col">
+                {foodType}
+              </div>
+              <div className="col">
+                {priceRange}
+              </div>
+              <div className="col">
+                {neighborhood}
+              </div>
             </div>
           </div>
         </div>

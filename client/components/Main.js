@@ -12,6 +12,7 @@ export default class Main extends Component {
   }
   render() {
     console.log('props', this.props);
+    const nextPage = this.props.nextPage;
     return (
       <div className="col-9" id="main">
         <Stats
@@ -19,7 +20,7 @@ export default class Main extends Component {
           processingTime={this.props.searchResults.processingTimeMS}
            />
         <Results restaurants={this.props.searchResults.hits} />
-        <ShowMore />
+        <ShowMore nextPage={nextPage} />
       </div>
     )
   }

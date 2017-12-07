@@ -18,7 +18,7 @@ const algoliasearch = require('algoliasearch');
 const algoliasearchHelper = require('algoliasearch-helper');
 const client = algoliasearch('KBNJ9HM3SF', 'ea8fd6f86e6d428e54255b7707770011');
 const helper = algoliasearchHelper(client, 'restaurant_index', {
-  facets: ['food_type', 'payment_options'],
+  facets: ['food_type', 'payment_options', 'price'],
   maxValuesPerFacet: 7,
   aroundLatLngViaIP: true
 });
@@ -30,6 +30,8 @@ export default class AppContainer extends Component {
     // this.setLocation = this.setLocation.bind(this);
     this.getSearchResults = this.getSearchResults.bind(this);
     this.setQuery = this.setQuery.bind(this);
+    this.nextPage = this.nextPage.bind(this);
+    // this.filterByRating = this.filterByRating.bind(this);
     // this.getFacetValues = this.getFacetValues.bind(this)
   }
 
@@ -53,6 +55,17 @@ export default class AppContainer extends Component {
     helper.setQuery(queryString).search();
   }
 
+  nextPage(){
+    // console.log('hello')
+    const currentPage = helper.getPage()
+    helper.setPage(currentPage).nextPage().search()
+  }
+
+  // filterByRating(){
+  //   console.log('will filter')
+  //   // helper.addNumericRefinement('stars_count', '>', 2)
+  // }
+
   // getFacetValues(){
   //   this.state.searchResults.getFacetValues('food_type', {sortBy: ['count:desc', 'selected']});
   // }
@@ -61,6 +74,7 @@ export default class AppContainer extends Component {
   render() {
     const searchResults = this.state.searchResults;
     const setQuery = this.setQuery;
+    const nextPage = this.nextPage;
     // const getFacetValues = this.getFacetValues;
     return (
       <div>
@@ -72,7 +86,10 @@ export default class AppContainer extends Component {
                 searchResults={searchResults}
                 helper={helper}
                 />
-              <Main searchResults={searchResults} />
+              <Main
+                searchResults={searchResults}
+                nextPage={nextPage}
+                />
             </div>
           </div>
         : null}
