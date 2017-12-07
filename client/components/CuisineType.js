@@ -4,7 +4,7 @@ export default function CuisineType (props){
   const handleClick = props.handleClick;
   return (
     <div className="cuisine-type">
-      <div onClick={handleClick} id={props.type}>
+      <div onClick={handleClick} id={props.type} className="sidebar-option">
         {props.type}
         <span>
           {props.count}

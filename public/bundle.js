@@ -10384,7 +10384,7 @@ exports = module.exports = __webpack_require__(173)(undefined);
 
 
 // module
-exports.push([module.i, "body {\n  background-size: cover;\n  width: 100%;\n  margin: 0;\n  font-family: \"Helvetica Neue\"; }\n  body #header {\n    background-color: #1C688E; }\n  body .nav {\n    background-color: #1C688E; }\n  body #sidebar {\n    background-color: white;\n    border: 2px solid gray; }\n  body #cuisine {\n    border-bottom: 1px solid black; }\n  body #stars {\n    display: flex;\n    flex-direction: column;\n    flex-wrap: nowrap; }\n  body #main {\n    background-color: white;\n    border: 2px solid gray;\n    display: flex;\n    flex-direction: column; }\n  body #showmore {\n    width: 50%;\n    align-self: center; }\n", ""]);
+exports.push([module.i, "body {\n  background-size: cover;\n  width: 100%;\n  margin: 0;\n  font-family: \"Helvetica Neue\"; }\n  body #header {\n    background-color: #1C688E; }\n  body .nav {\n    background-color: #1C688E; }\n  body #sidebar {\n    background-color: white;\n    border: 2px solid gray; }\n  body #cuisine {\n    border-bottom: 1px solid black; }\n  body #stars {\n    display: flex;\n    flex-direction: column;\n    flex-wrap: nowrap; }\n  body .sidebar-option:hover {\n    background-color: #2897C5; }\n  body #main {\n    background-color: white;\n    border: 2px solid gray;\n    display: flex;\n    flex-direction: column; }\n  body #showmore {\n    width: 50%;\n    align-self: center; }\n", ""]);
 
 // exports
 
@@ -28299,7 +28299,7 @@ var algoliasearch = __webpack_require__(204);
 var algoliasearchHelper = __webpack_require__(225);
 var client = algoliasearch('KBNJ9HM3SF', 'ea8fd6f86e6d428e54255b7707770011');
 var helper = algoliasearchHelper(client, 'restaurant_index', {
-  facets: ['food_type'],
+  facets: ['food_type', 'payment_options'],
   maxValuesPerFacet: 7,
   aroundLatLngViaIP: true
 });
@@ -28526,16 +28526,19 @@ var Sidebar = function (_Component) {
     // this.paymentCounter = this.paymentCounter.bind(this);
     // this.helper = this.props.helper;
     _this.handleClick = _this.handleClick.bind(_this);
+    _this.handlePaymentClick = _this.handlePaymentClick.bind(_this);
     return _this;
   }
 
   _createClass(Sidebar, [{
     key: 'componentDidMount',
     value: function componentDidMount() {
-      var types = this.props.searchResults.getFacetValues('food_type', { sortBy: ['count:desc', 'selected'] });
+      var foodTypes = this.props.searchResults.getFacetValues('food_type', { sortBy: ['count:desc', 'selected'] });
+      var paymentTypes = this.props.searchResults.getFacetValues('payment_options', { sortBy: ['count:desc'] });
       console.log('calling this function');
       this.setState({
-        facetValues: types
+        foodFacetValues: foodTypes,
+        paymentTypes: paymentTypes
       });
     }
   }, {
@@ -28544,6 +28547,12 @@ var Sidebar = function (_Component) {
       var foodType = evt.target.id;
       this.props.helper.toggleRefine('food_type', foodType).search();
       // console.log('what is this', foodType)
+    }
+  }, {
+    key: 'handlePaymentClick',
+    value: function handlePaymentClick(evt) {
+      var paymentType = evt.target.id;
+      this.props.helper.toggleRefine('payment_options', paymentType).search();
     }
 
     // const Categories = connect(
@@ -28570,8 +28579,10 @@ var Sidebar = function (_Component) {
     key: 'render',
     value: function render() {
       console.log('this state', this.state);
-      var foodTypes = this.state.facetValues;
+      var foodTypes = this.state.foodFacetValues;
       var handleClick = this.handleClick;
+      var paymentTypes = this.state.paymentTypes;
+      var handlePaymentClick = this.handlePaymentClick;
       return _react2.default.createElement(
         'div',
         { className: 'col-3', id: 'sidebar' },
@@ -28579,7 +28590,11 @@ var Sidebar = function (_Component) {
           foodTypes: foodTypes,
           handleClick: handleClick
         }) : null,
-        _react2.default.createElement(_Stars2.default, null)
+        _react2.default.createElement(_Stars2.default, null),
+        paymentTypes ? _react2.default.createElement(_Payment2.default, {
+          paymentTypes: paymentTypes,
+          handleClick: handlePaymentClick
+        }) : null
       );
     }
   }]);
@@ -28659,7 +28674,7 @@ function CuisineType(props) {
     { className: "cuisine-type" },
     _react2.default.createElement(
       "div",
-      { onClick: handleClick, id: props.type },
+      { onClick: handleClick, id: props.type, className: "sidebar-option" },
       props.type,
       _react2.default.createElement(
         "span",
@@ -28746,7 +28761,8 @@ var _PaymentOption2 = _interopRequireDefault(_PaymentOption);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function Payment(props) {
-  var paymentOptions = Object.keys(props.paymentOptions);
+  var paymentOptions = props.paymentTypes;
+  var handleClick = props.handleClick;
   return _react2.default.createElement(
     'div',
     { id: 'payment' },
@@ -28757,9 +28773,10 @@ function Payment(props) {
     ),
     paymentOptions.map(function (cardType) {
       return _react2.default.createElement(_PaymentOption2.default, {
-        key: cardType,
-        type: cardType,
-        count: props.paymentOptions[cardType]
+        key: cardType.name,
+        type: cardType.name,
+        count: cardType.count,
+        handleClick: handleClick
       });
     })
   );
@@ -28786,7 +28803,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 function PaymentOption(props) {
   return _react2.default.createElement(
     "div",
-    { className: "payment-option" },
+    { className: "sidebar-option", id: props.type, onClick: props.handleClick },
     props.type,
     props.count
   );
@@ -28957,7 +28974,7 @@ function ResultItem(props) {
   var neighborhood = props.restaurantData.neighborhood;
   var starsCount = props.restaurantData.stars_count;
   var priceRange = props.restaurantData.price_range;
-  var reviewsCount = props.reviews_count;
+  var reviewsCount = props.restaurantData.reviews_count;
   return _react2.default.createElement(
     "div",
     { id: "result-item" },
@@ -28977,10 +28994,19 @@ function ResultItem(props) {
           "div",
           null,
           starsCount,
-          reviewsCount,
-          foodType,
-          priceRange,
-          neighborhood
+          _react2.default.createElement(
+            "span",
+            null,
+            reviewsCount,
+            " Reviews"
+          ),
+          _react2.default.createElement(
+            "div",
+            null,
+            foodType,
+            priceRange,
+            neighborhood
+          )
         )
       )
     )

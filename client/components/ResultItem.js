@@ -7,7 +7,7 @@ export default function ResultItem (props){
   const neighborhood = props.restaurantData.neighborhood;
   const starsCount = props.restaurantData.stars_count;
   const priceRange = props.restaurantData.price_range;
-  const reviewsCount = props.reviews_count;
+  const reviewsCount = props.restaurantData.reviews_count;
   return (
     <div id="result-item">
       <div className="media">
@@ -16,10 +16,14 @@ export default function ResultItem (props){
           <h5 className="mt-0">{name}</h5>
           <div>
             {starsCount}
-            {reviewsCount}
-            {foodType}
-            {priceRange}
-            {neighborhood}
+            <span>
+              {reviewsCount} Reviews
+            </span>
+            <div>
+              {foodType}
+              {priceRange}
+              {neighborhood}
+            </div>
           </div>
         </div>
       </div>

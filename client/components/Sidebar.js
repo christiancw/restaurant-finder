@@ -12,13 +12,16 @@ export default class Sidebar extends Component {
     // this.paymentCounter = this.paymentCounter.bind(this);
     // this.helper = this.props.helper;
     this.handleClick = this.handleClick.bind(this);
+    this.handlePaymentClick = this.handlePaymentClick.bind(this);
   }
 
   componentDidMount(){
-      const types = this.props.searchResults.getFacetValues('food_type', {sortBy: ['count:desc', 'selected']})
+      const foodTypes = this.props.searchResults.getFacetValues('food_type', {sortBy: ['count:desc', 'selected']})
+      const paymentTypes = this.props.searchResults.getFacetValues('payment_options', {sortBy: ['count:desc']});
       console.log('calling this function')
       this.setState({
-        facetValues: types
+        foodFacetValues: foodTypes,
+        paymentTypes: paymentTypes
       })
   }
 
@@ -26,6 +29,11 @@ export default class Sidebar extends Component {
     const foodType = evt.target.id;
     this.props.helper.toggleRefine('food_type', foodType).search()
     // console.log('what is this', foodType)
+  }
+
+  handlePaymentClick(evt){
+    const paymentType = evt.target.id;
+    this.props.helper.toggleRefine('payment_options', paymentType).search()
   }
 
   // const Categories = connect(
@@ -50,8 +58,10 @@ export default class Sidebar extends Component {
 
   render() {
     console.log('this state', this.state)
-    const foodTypes = this.state.facetValues;
+    const foodTypes = this.state.foodFacetValues;
     const handleClick = this.handleClick;
+    const paymentTypes = this.state.paymentTypes;
+    const handlePaymentClick = this.handlePaymentClick;
     return (
       <div className="col-3" id="sidebar">
         {foodTypes ?
@@ -61,6 +71,12 @@ export default class Sidebar extends Component {
              />
         : null}
         <Stars />
+        {paymentTypes ?
+          <Payment
+            paymentTypes={paymentTypes}
+            handleClick={handlePaymentClick}
+            />
+        : null}
       </div>
     )
   }
