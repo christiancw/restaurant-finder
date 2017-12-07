@@ -28360,8 +28360,8 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var algoliasearch = __webpack_require__(206);
 var algoliasearchHelper = __webpack_require__(227);
 var client = algoliasearch('KBNJ9HM3SF', 'ea8fd6f86e6d428e54255b7707770011');
-var helper = algoliasearchHelper(client, 'restaurant_index', {
-  facets: ['food_type', 'payment_options', 'price'],
+var helper = algoliasearchHelper(client, 'new_restaurant_index', {
+  facets: ['food_type', 'payment_options', 'stars_count'],
   maxValuesPerFacet: 7,
   aroundLatLngViaIP: true
 });
@@ -28635,7 +28635,7 @@ var Sidebar = function (_Component) {
     key: 'filterByRating',
     value: function filterByRating(evt) {
       var starNumber = evt.currentTarget.id;
-      this.props.helper.addNumericRefinement('price', '>', starNumber).search();
+      this.props.helper.addNumericRefinement('stars_count', '>', starNumber).search();
     }
   }, {
     key: 'render',

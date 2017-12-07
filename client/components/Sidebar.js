@@ -35,7 +35,7 @@ export default class Sidebar extends Component {
 
   filterByRating(evt){
     const starNumber = evt.currentTarget.id;
-    this.props.helper.addNumericRefinement('price', '>', starNumber).search()
+    this.props.helper.addNumericRefinement('stars_count', '>', starNumber).search()
   }
 
   render() {

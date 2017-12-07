@@ -17,8 +17,8 @@ import Main from './Main';
 const algoliasearch = require('algoliasearch');
 const algoliasearchHelper = require('algoliasearch-helper');
 const client = algoliasearch('KBNJ9HM3SF', 'ea8fd6f86e6d428e54255b7707770011');
-const helper = algoliasearchHelper(client, 'restaurant_index', {
-  facets: ['food_type', 'payment_options', 'price'],
+const helper = algoliasearchHelper(client, 'new_restaurant_index', {
+  facets: ['food_type', 'payment_options', 'stars_count'],
   maxValuesPerFacet: 7,
   aroundLatLngViaIP: true
 });

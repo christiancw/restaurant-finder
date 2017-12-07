@@ -27,7 +27,12 @@ const setCSV = returnedData => {
     let recordArr = record.split(';');
     let newRecord = {};
     for (let i = 0; i < recordArr.length; i++){
-      newRecord[attributes[i]] = recordArr[i];
+      if (attributes[i] === 'stars_count'){
+        newRecord[attributes[i]] = Number(recordArr[i]);
+      }
+      else {
+        newRecord[attributes[i]] = recordArr[i];
+      }
     }
     csvJSONArr.push(newRecord);
   });
@@ -65,7 +70,7 @@ function getData () {
 }
 
 function writeData (dataToStore) {
-  return fs.writeFileAsync('combined_data.json', dataToStore);
+  return fs.writeFileAsync('new_combined_data.json', dataToStore);
 }
 
 getData().then(

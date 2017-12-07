@@ -3,12 +3,12 @@ const adminKey = process.env.ADMIN_KEY;
 const appId = process.env.APP_ID;
 const chunk = require('lodash.chunk');
 
-const records = require('./combined_data.json');
+const records = require('./new_combined_data.json');
 
 const algoliasearch = require('algoliasearch');
 
 const client = algoliasearch(appId, adminKey);
-const index = client.initIndex('restaurant_index');
+const index = client.initIndex('new_restaurant_index');
 
 const chunks = chunk(records, 1000);
 
