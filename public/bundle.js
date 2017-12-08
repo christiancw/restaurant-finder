@@ -10445,7 +10445,7 @@ exports = module.exports = __webpack_require__(175)(undefined);
 
 
 // module
-exports.push([module.i, "html {\n  height: 100%; }\n\nbody {\n  background-size: cover;\n  width: 100%;\n  margin: 0;\n  font-family: \"Helvetica Neue\"; }\n  body #main-background {\n    background-image: url(\"background.png\");\n    padding-top: 20px; }\n  body .main-container {\n    box-shadow: 0 4px 7px 4px rgba(0, 0, 0, 0.2); }\n  body #header {\n    background-color: #1C688E;\n    padding-top: 15px;\n    padding-bottom: 15px; }\n  body .nav {\n    background-color: #1C688E; }\n  body #sidebar {\n    padding-top: 15px;\n    background-color: white;\n    border-right: 0.5px solid gray; }\n  body .one-row {\n    display: flex;\n    flex-direction: row;\n    justify-content: space-between; }\n  body #ratings {\n    margin-top: 20px; }\n  body .star-container {\n    position: absolute;\n    height: 15px; }\n  body .stars-box {\n    display: block;\n    position: static;\n    height: 20px; }\n  body #ratings .stars-box:hover {\n    border: 0.5px solid #2897C5;\n    cursor: pointer; }\n  body .filled-star {\n    z-index: 1; }\n  body .sidebar-option:hover {\n    background-color: #2897C5;\n    color: white;\n    cursor: pointer; }\n  body .sidebar-option {\n    padding-left: 2%;\n    padding-right: 2%;\n    border-radius: 1px; }\n  body #payment {\n    margin-top: 20px; }\n  body #main {\n    background-color: white;\n    display: flex;\n    flex-direction: column; }\n  body #stats {\n    margin-top: 15px;\n    margin-bottom: 15px; }\n  body #stat-text {\n    font-weight: bold; }\n  body .result-item {\n    margin-bottom: 25px; }\n    body .result-item .thumbnail {\n      height: 100px;\n      width: 100px; }\n  body #item-info {\n    margin-top: 10px; }\n  body .first-row {\n    display: flex;\n    flex-wrap: nowrap;\n    font-size: 15px;\n    margin-bottom: 6px; }\n  body .reviews-count {\n    color: #707070;\n    padding-left: 0; }\n  body .star-count {\n    color: #f4b342;\n    padding-right: 0; }\n  body .stars-rating {\n    padding-right: 0; }\n  body .stars-rating .stars-box:hover {\n    background-color: transparent;\n    cursor: default; }\n  body .stars-rating .stars-box {\n    padding-right: 0; }\n  body .second-row {\n    font-size: 15px;\n    display: flex;\n    color: #707070; }\n  body #item-price {\n    border-left: 1px solid #707070;\n    border-right: 1px solid #707070; }\n  body #showmore {\n    width: 50%;\n    align-self: center;\n    font-size: 20px;\n    color: #707070; }\n  body #showmore:hover {\n    cursor: pointer;\n    box-shadow: -1px 2px 10px 0px grey; }\n", ""]);
+exports.push([module.i, "html {\n  height: 100%; }\n\nbody {\n  background-size: cover;\n  width: 100%;\n  margin: 0;\n  font-family: \"Helvetica Neue\"; }\n  body #main-background {\n    background-image: url(\"background.png\");\n    padding-top: 20px; }\n  body .main-container {\n    box-shadow: 0 4px 7px 4px rgba(0, 0, 0, 0.2); }\n  body #header {\n    background-color: #1C688E;\n    padding-top: 15px;\n    padding-bottom: 15px; }\n  body .nav {\n    background-color: #1C688E; }\n  body #sidebar {\n    padding-top: 15px;\n    background-color: white;\n    border-right: 0.5px solid gray; }\n  body #highlighted {\n    background-color: #2897C5; }\n  body .one-row {\n    display: flex;\n    flex-direction: row;\n    justify-content: space-between; }\n  body #ratings {\n    margin-top: 20px; }\n  body .star-container {\n    position: absolute;\n    height: 15px; }\n  body .stars-box {\n    display: block;\n    position: static;\n    height: 20px; }\n  body #ratings .stars-box:hover {\n    border-bottom: 0.5px solid #2897C5;\n    cursor: pointer; }\n  body .filled-star {\n    z-index: 1; }\n  body .sidebar-option:hover {\n    background-color: #2897C5;\n    color: white;\n    cursor: pointer; }\n  body .sidebar-option {\n    padding-left: 2%;\n    padding-right: 2%;\n    border-radius: 1px; }\n  body #payment {\n    margin-top: 20px; }\n  body #main {\n    background-color: white;\n    display: flex;\n    flex-direction: column; }\n  body #stats {\n    margin-top: 15px;\n    margin-bottom: 15px; }\n  body #stat-text {\n    font-weight: bold; }\n  body .result-item {\n    margin-bottom: 25px; }\n    body .result-item .thumbnail {\n      height: 100px;\n      width: 100px; }\n  body #item-info {\n    margin-top: 10px; }\n  body .first-row {\n    display: flex;\n    flex-wrap: nowrap;\n    font-size: 15px;\n    margin-bottom: 6px; }\n  body .reviews-count {\n    color: #707070;\n    padding-left: 0; }\n  body .star-count {\n    color: #f4b342;\n    padding-right: 0; }\n  body .stars-rating {\n    padding-right: 0; }\n  body .stars-rating .stars-box:hover {\n    background-color: transparent;\n    cursor: default; }\n  body .stars-rating .stars-box {\n    padding-right: 0; }\n  body .second-row {\n    font-size: 15px;\n    display: flex;\n    color: #707070; }\n  body #item-price {\n    border-left: 1px solid #707070;\n    border-right: 1px solid #707070; }\n  body #showmore {\n    width: 50%;\n    align-self: center;\n    font-size: 20px;\n    color: #707070; }\n  body #showmore:hover {\n    cursor: pointer;\n    box-shadow: -1px 2px 10px 0px grey; }\n", ""]);
 
 // exports
 
@@ -28362,12 +28362,10 @@ var AppContainer = function (_Component) {
     var _this = _possibleConstructorReturn(this, (AppContainer.__proto__ || Object.getPrototypeOf(AppContainer)).call(this, props));
 
     _this.state = {};
-    // this.setLocation = this.setLocation.bind(this);
     _this.getSearchResults = _this.getSearchResults.bind(_this);
     _this.setQuery = _this.setQuery.bind(_this);
     _this.nextPage = _this.nextPage.bind(_this);
-    // this.filterByRating = this.filterByRating.bind(this);
-    // this.getFacetValues = this.getFacetValues.bind(this)
+    _this.configureHelper = _this.configureHelper.bind(_this);
     return _this;
   }
 
@@ -28376,10 +28374,19 @@ var AppContainer = function (_Component) {
     value: function componentDidMount() {
       var getSearchResults = this.getSearchResults;
       helper.on('result', function (content) {
-        console.log(content);
         getSearchResults(content);
       });
+      this.configureHelper();
       helper.search();
+    }
+  }, {
+    key: 'configureHelper',
+    value: function configureHelper() {
+      helper.addFacetExclusion('payment_options', 'JCB');
+      helper.addFacetExclusion('payment_options', 'Cash Only');
+      helper.addFacetExclusion('payment_options', 'Pay with OpenTable');
+      // helper.addFacetExclusion('payment_options', 'Diners Club');
+      // helper.addFacetExclusion('payment_options', 'Carte Blanche');
     }
   }, {
     key: 'getSearchResults',
@@ -28391,13 +28398,11 @@ var AppContainer = function (_Component) {
   }, {
     key: 'setQuery',
     value: function setQuery(queryString) {
-      console.log('callt this', queryString);
       helper.setQuery(queryString).search();
     }
   }, {
     key: 'nextPage',
     value: function nextPage() {
-      // console.log('hello')
       var currentPage = helper.getPage();
       helper.setPage(currentPage).nextPage().search();
     }
@@ -28407,7 +28412,6 @@ var AppContainer = function (_Component) {
       var searchResults = this.state.searchResults;
       var setQuery = this.setQuery;
       var nextPage = this.nextPage;
-      // const getFacetValues = this.getFacetValues;
       return _react2.default.createElement(
         'div',
         { id: 'main-background' },
@@ -28487,7 +28491,6 @@ var Header = function (_Component) {
   }, {
     key: 'render',
     value: function render() {
-      console.log('whats here', this.props);
       return _react2.default.createElement(
         'nav',
         { className: 'navbar row', id: 'header' },
@@ -28577,7 +28580,9 @@ var Sidebar = function (_Component) {
 
     var _this = _possibleConstructorReturn(this, (Sidebar.__proto__ || Object.getPrototypeOf(Sidebar)).call(this, props));
 
-    _this.state = {};
+    _this.state = {
+      selectedFoodType: ''
+    };
     _this.handleClick = _this.handleClick.bind(_this);
     _this.handlePaymentClick = _this.handlePaymentClick.bind(_this);
     _this.filterByRating = _this.filterByRating.bind(_this);
@@ -28588,7 +28593,23 @@ var Sidebar = function (_Component) {
     key: 'componentDidMount',
     value: function componentDidMount() {
       var foodTypes = this.props.searchResults.getFacetValues('food_type', { sortBy: ['count:desc', 'selected'] });
-      var paymentTypes = this.props.searchResults.getFacetValues('payment_options', { sortBy: ['count:desc'] });
+      var allPaymentTypes = this.props.searchResults.getFacetValues('payment_options', { sortBy: ['count:desc'] });
+      var paymentTypes = allPaymentTypes.filter(function (option) {
+        return option.isExcluded === false;
+      });
+      this.setState({
+        foodFacetValues: foodTypes,
+        paymentTypes: paymentTypes
+      });
+    }
+  }, {
+    key: 'componentWillReceiveProps',
+    value: function componentWillReceiveProps() {
+      var foodTypes = this.props.searchResults.getFacetValues('food_type', { sortBy: ['count:desc', 'selected'] });
+      var allPaymentTypes = this.props.searchResults.getFacetValues('payment_options', { sortBy: ['count:desc'] });
+      var paymentTypes = allPaymentTypes.filter(function (option) {
+        return option.isExcluded === false;
+      });
       this.setState({
         foodFacetValues: foodTypes,
         paymentTypes: paymentTypes
@@ -28597,14 +28618,17 @@ var Sidebar = function (_Component) {
   }, {
     key: 'handleClick',
     value: function handleClick(evt) {
-      var foodType = evt.target.id;
+      var foodType = evt.currentTarget.id;
+      this.props.helper.clearRefinements('food_type');
       this.props.helper.toggleRefine('food_type', foodType).search();
-      // console.log('what is this', foodType)
+      this.setState({
+        selectedFoodType: foodType
+      });
     }
   }, {
     key: 'handlePaymentClick',
     value: function handlePaymentClick(evt) {
-      var paymentType = evt.target.id;
+      var paymentType = evt.currentTarget.id;
       this.props.helper.toggleRefine('payment_options', paymentType).search();
     }
   }, {
@@ -28621,12 +28645,14 @@ var Sidebar = function (_Component) {
       var paymentTypes = this.state.paymentTypes;
       var handlePaymentClick = this.handlePaymentClick;
       var filterByRating = this.filterByRating;
+      var selectedFoodType = this.state.selectedFoodType;
       return _react2.default.createElement(
         'div',
         { className: 'col-md-4', id: 'sidebar' },
         foodTypes ? _react2.default.createElement(_Cuisine2.default, {
           foodTypes: foodTypes,
-          handleClick: handleClick
+          handleClick: handleClick,
+          selectedFoodType: selectedFoodType
         }) : null,
         _react2.default.createElement(_RatingsFilter2.default, { filterByRating: filterByRating }),
         paymentTypes ? _react2.default.createElement(_Payment2.default, {
@@ -28652,7 +28678,8 @@ exports.default = Sidebar;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = Cuisine;
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _react = __webpack_require__(1);
 
@@ -28664,28 +28691,67 @@ var _CuisineType2 = _interopRequireDefault(_CuisineType);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function Cuisine(props) {
-  var cuisines = props.foodTypes;
-  var handleClick = props.handleClick;
-  console.log('CUISINES', props.foodTypes);
-  return _react2.default.createElement(
-    'div',
-    { id: 'cuisine' },
-    _react2.default.createElement(
-      'h6',
-      null,
-      'Cuisine/Food Type'
-    ),
-    cuisines.map(function (cuisine) {
-      return _react2.default.createElement(_CuisineType2.default, {
-        key: cuisine.name,
-        type: cuisine.name,
-        count: cuisine.count,
-        handleClick: handleClick
-      });
-    })
-  );
-}
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Cuisine = function (_Component) {
+  _inherits(Cuisine, _Component);
+
+  function Cuisine(props) {
+    _classCallCheck(this, Cuisine);
+
+    var _this = _possibleConstructorReturn(this, (Cuisine.__proto__ || Object.getPrototypeOf(Cuisine)).call(this, props));
+
+    _this.state = {};
+    _this.isSelected = _this.isSelected.bind(_this);
+    return _this;
+  }
+
+  _createClass(Cuisine, [{
+    key: 'isSelected',
+    value: function isSelected(currentFoodType, selectedFoodType) {
+      if (currentFoodType === selectedFoodType) {
+        return 'highlighted';
+      } else {
+        return 'not-highlighted';
+      }
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var cuisines = this.props.foodTypes;
+      var handleClick = this.props.handleClick;
+      var selectedFoodType = this.props.selectedFoodType;
+      var isSelected = this.isSelected;
+      return _react2.default.createElement(
+        'div',
+        { id: 'cuisine' },
+        _react2.default.createElement(
+          'h6',
+          null,
+          'Cuisine/Food Type'
+        ),
+        cuisines.map(function (cuisine) {
+          return _react2.default.createElement(_CuisineType2.default, {
+            key: cuisine.name,
+            type: cuisine.name,
+            count: cuisine.count,
+            handleClick: handleClick,
+            selectedFoodType: selectedFoodType,
+            isSelected: isSelected
+          });
+        })
+      );
+    }
+  }]);
+
+  return Cuisine;
+}(_react.Component);
+
+exports.default = Cuisine;
 
 /***/ }),
 /* 195 */
@@ -28707,9 +28773,10 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 function CuisineType(props) {
   var handleClick = props.handleClick;
+  var isSelected = props.isSelected(props.type, props.selectedFoodType);
   return _react2.default.createElement(
     "div",
-    { className: "cuisine-type" },
+    { className: "cuisine-type", id: isSelected },
     _react2.default.createElement(
       "div",
       { onClick: handleClick, id: props.type, className: "sidebar-option one-row" },
@@ -28743,14 +28810,6 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _starsPlain = __webpack_require__(102);
-
-var _starsPlain2 = _interopRequireDefault(_starsPlain);
-
-var _starsIcons = __webpack_require__(197);
-
-var _starsIcons2 = _interopRequireDefault(_starsIcons);
-
 var _Stars = __webpack_require__(103);
 
 var _Stars2 = _interopRequireDefault(_Stars);
@@ -28777,12 +28836,7 @@ function RatingsFilter(props) {
 }
 
 /***/ }),
-/* 197 */
-/***/ (function(module, exports) {
-
-module.exports = "data:image/png;base64,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"
-
-/***/ }),
+/* 197 */,
 /* 198 */
 /***/ (function(module, exports) {
 
@@ -28919,7 +28973,6 @@ var Main = function (_Component) {
   _createClass(Main, [{
     key: 'render',
     value: function render() {
-      console.log('props', this.props);
       var nextPage = this.props.nextPage;
       return _react2.default.createElement(
         'div',
@@ -29004,7 +29057,6 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 function Results(props) {
   var restaurants = props.restaurants;
-  console.log('RESTAURANTS', restaurants);
   return _react2.default.createElement(
     'div',
     { id: 'results' },

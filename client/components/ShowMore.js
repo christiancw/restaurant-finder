@@ -6,5 +6,5 @@ export default function ShowMore (props){
     <button id="showmore" onClick={nextPage}>
       Show More
     </button>
-  )
+  );
 }

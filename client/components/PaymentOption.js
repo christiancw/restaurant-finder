@@ -10,5 +10,5 @@ export default function PaymentOption (props){
         {props.count}
       </span>
     </div>
-  )
+  );
 }

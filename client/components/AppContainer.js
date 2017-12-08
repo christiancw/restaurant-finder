@@ -16,21 +16,27 @@ export default class AppContainer extends Component {
   constructor(props){
     super(props);
     this.state = {};
-    // this.setLocation = this.setLocation.bind(this);
     this.getSearchResults = this.getSearchResults.bind(this);
     this.setQuery = this.setQuery.bind(this);
     this.nextPage = this.nextPage.bind(this);
-    // this.filterByRating = this.filterByRating.bind(this);
-    // this.getFacetValues = this.getFacetValues.bind(this)
+    this.configureHelper = this.configureHelper.bind(this);
   }
 
   componentDidMount() {
     const getSearchResults = this.getSearchResults;
     helper.on('result', function(content) {
-      console.log(content);
       getSearchResults(content);
     });
+    this.configureHelper();
     helper.search();
+  }
+
+  configureHelper() {
+    helper.addFacetExclusion('payment_options', 'JCB');
+    helper.addFacetExclusion('payment_options', 'Cash Only');
+    helper.addFacetExclusion('payment_options', 'Pay with OpenTable');
+    // helper.addFacetExclusion('payment_options', 'Diners Club');
+    // helper.addFacetExclusion('payment_options', 'Carte Blanche');
   }
 
   getSearchResults (content) {
@@ -40,12 +46,10 @@ export default class AppContainer extends Component {
   }
 
   setQuery (queryString) {
-    console.log('callt this', queryString)
     helper.setQuery(queryString).search();
   }
 
   nextPage(){
-    // console.log('hello')
     const currentPage = helper.getPage()
     helper.setPage(currentPage).nextPage().search()
   }
@@ -54,7 +58,6 @@ export default class AppContainer extends Component {
     const searchResults = this.state.searchResults;
     const setQuery = this.setQuery;
     const nextPage = this.nextPage;
-    // const getFacetValues = this.getFacetValues;
     return (
       <div id="main-background">
         {searchResults ?

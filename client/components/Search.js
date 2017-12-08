@@ -9,5 +9,5 @@ export default function Search (props){
         type="search"
         placeholder="Search for Restaurants by Name, Cuisine, Location" />
     </form>
-  )
+  );
 }

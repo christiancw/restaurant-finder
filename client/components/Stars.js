@@ -1,9 +1,9 @@
 import React from 'react';
-import emptyStar from '../../resources/graphics/star-empty.png'
-import plainStar from '../../resources/graphics/stars-plain.png'
+import emptyStar from '../../resources/graphics/star-empty.png';
+import plainStar from '../../resources/graphics/stars-plain.png';
 
 export default function Stars (props){
-  const filterByRating = props.filterByRating
+  const filterByRating = props.filterByRating;
   const starNumber = props.starNumber;
   const filledStars = [];
   for (let i = 0; i < starNumber; i++){
@@ -24,5 +24,5 @@ export default function Stars (props){
           <img src={emptyStar} alt="emptyStar" height="15" width="15" />
         </div>
       </div>
-  )
+  );
 }
