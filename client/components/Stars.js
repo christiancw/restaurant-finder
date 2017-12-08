@@ -7,11 +7,10 @@ export default function Stars (props){
   const starNumber = props.starNumber;
   const filledStars = [];
   for (let i = 0; i < starNumber; i++){
-    filledStars.push(plainStar)
+    filledStars.push(plainStar);
   }
-  console.log('STAR NUMBER->', starNumber);
   return (
-      <div id={starNumber} onClick={filterByRating} className="stars-box sidebar-option">
+      <div id={starNumber} onClick={filterByRating} className="stars-box">
         <div className="star-container filled-star">
           {filledStars.map(() => {
             return <img src={plainStar} alt="plainStar" height="15" width="15" />;

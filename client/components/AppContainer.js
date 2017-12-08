@@ -2,17 +2,6 @@ import React, { Component } from 'react';
 import Header from './Header';
 import Sidebar from './Sidebar';
 import Main from './Main';
-// import initialState from './dummydata';
-
-// const initialState = {
-//   searchResults: {
-//     hits: [],
-//     nbHits: 0,
-//     processingTimeMS: 0,
-//     facets: [],
-//     getFacetValues: {}
-//   }
-// };
 
 const algoliasearch = require('algoliasearch');
 const algoliasearchHelper = require('algoliasearch-helper');
@@ -60,16 +49,6 @@ export default class AppContainer extends Component {
     const currentPage = helper.getPage()
     helper.setPage(currentPage).nextPage().search()
   }
-
-  // filterByRating(){
-  //   console.log('will filter')
-  //   // helper.addNumericRefinement('stars_count', '>', 2)
-  // }
-
-  // getFacetValues(){
-  //   this.state.searchResults.getFacetValues('food_type', {sortBy: ['count:desc', 'selected']});
-  // }
-
 
   render() {
     const searchResults = this.state.searchResults;

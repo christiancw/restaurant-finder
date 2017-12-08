@@ -6273,10 +6273,9 @@ function Stars(props) {
   for (var i = 0; i < starNumber; i++) {
     filledStars.push(_starsPlain2.default);
   }
-  console.log('STAR NUMBER->', starNumber);
   return _react2.default.createElement(
     'div',
-    { id: starNumber, onClick: filterByRating, className: 'stars-box sidebar-option' },
+    { id: starNumber, onClick: filterByRating, className: 'stars-box' },
     _react2.default.createElement(
       'div',
       { className: 'star-container filled-star' },
@@ -10446,7 +10445,7 @@ exports = module.exports = __webpack_require__(175)(undefined);
 
 
 // module
-exports.push([module.i, "html {\n  height: 100%; }\n\nbody {\n  background-size: cover;\n  width: 100%;\n  margin: 0;\n  font-family: \"Helvetica Neue\"; }\n  body #main-background {\n    background-image: url(\"background.png\");\n    padding-top: 20px; }\n  body .main-container {\n    box-shadow: 0 4px 7px 4px rgba(0, 0, 0, 0.2); }\n  body #header {\n    background-color: #1C688E;\n    padding-top: 15px;\n    padding-bottom: 15px; }\n  body .nav {\n    background-color: #1C688E; }\n  body #sidebar {\n    padding-top: 15px;\n    background-color: white;\n    border-right: 0.5px solid gray; }\n  body .one-row {\n    display: flex;\n    flex-direction: row;\n    justify-content: space-between; }\n  body #ratings {\n    margin-top: 20px; }\n  body .star-container {\n    position: absolute;\n    height: 15px; }\n  body .stars-box {\n    display: block;\n    position: static;\n    height: 20px; }\n  body .filled-star {\n    z-index: 1; }\n  body .sidebar-option:hover {\n    background-color: #2897C5;\n    color: white;\n    cursor: pointer; }\n  body .sidebar-option {\n    padding-left: 2%;\n    padding-right: 2%;\n    border-radius: 1px; }\n  body #payment {\n    margin-top: 20px; }\n  body #main {\n    background-color: white;\n    display: flex;\n    flex-direction: column; }\n  body #stats {\n    margin-top: 15px;\n    margin-bottom: 15px; }\n  body #stat-text {\n    font-weight: bold; }\n  body .result-item {\n    margin-bottom: 25px; }\n    body .result-item .thumbnail {\n      height: 100px;\n      width: 100px; }\n  body #item-info {\n    margin-top: 10px; }\n  body .first-row {\n    display: flex;\n    font-size: 15px;\n    margin-bottom: 6px; }\n  body .reviews-count {\n    color: #707070;\n    padding-left: 0; }\n  body .star-count {\n    color: #f4b342;\n    padding-right: 0; }\n  body .stars-rating {\n    padding-right: 0; }\n  body .stars-rating .stars-box:hover {\n    background-color: transparent;\n    cursor: default; }\n  body .stars-rating .stars-box {\n    padding-right: 0; }\n  body .second-row {\n    font-size: 15px;\n    display: flex;\n    color: #707070; }\n  body #item-price {\n    border-left: 1px solid #707070;\n    border-right: 1px solid #707070; }\n  body #showmore {\n    width: 50%;\n    align-self: center; }\n  body #showmore:hover {\n    cursor: pointer;\n    box-shadow: -1px 2px 10px 0px grey; }\n", ""]);
+exports.push([module.i, "html {\n  height: 100%; }\n\nbody {\n  background-size: cover;\n  width: 100%;\n  margin: 0;\n  font-family: \"Helvetica Neue\"; }\n  body #main-background {\n    background-image: url(\"background.png\");\n    padding-top: 20px; }\n  body .main-container {\n    box-shadow: 0 4px 7px 4px rgba(0, 0, 0, 0.2); }\n  body #header {\n    background-color: #1C688E;\n    padding-top: 15px;\n    padding-bottom: 15px; }\n  body .nav {\n    background-color: #1C688E; }\n  body #sidebar {\n    padding-top: 15px;\n    background-color: white;\n    border-right: 0.5px solid gray; }\n  body .one-row {\n    display: flex;\n    flex-direction: row;\n    justify-content: space-between; }\n  body #ratings {\n    margin-top: 20px; }\n  body .star-container {\n    position: absolute;\n    height: 15px; }\n  body .stars-box {\n    display: block;\n    position: static;\n    height: 20px; }\n  body #ratings .stars-box:hover {\n    border: 0.5px solid #2897C5;\n    cursor: pointer; }\n  body .filled-star {\n    z-index: 1; }\n  body .sidebar-option:hover {\n    background-color: #2897C5;\n    color: white;\n    cursor: pointer; }\n  body .sidebar-option {\n    padding-left: 2%;\n    padding-right: 2%;\n    border-radius: 1px; }\n  body #payment {\n    margin-top: 20px; }\n  body #main {\n    background-color: white;\n    display: flex;\n    flex-direction: column; }\n  body #stats {\n    margin-top: 15px;\n    margin-bottom: 15px; }\n  body #stat-text {\n    font-weight: bold; }\n  body .result-item {\n    margin-bottom: 25px; }\n    body .result-item .thumbnail {\n      height: 100px;\n      width: 100px; }\n  body #item-info {\n    margin-top: 10px; }\n  body .first-row {\n    display: flex;\n    flex-wrap: nowrap;\n    font-size: 15px;\n    margin-bottom: 6px; }\n  body .reviews-count {\n    color: #707070;\n    padding-left: 0; }\n  body .star-count {\n    color: #f4b342;\n    padding-right: 0; }\n  body .stars-rating {\n    padding-right: 0; }\n  body .stars-rating .stars-box:hover {\n    background-color: transparent;\n    cursor: default; }\n  body .stars-rating .stars-box {\n    padding-right: 0; }\n  body .second-row {\n    font-size: 15px;\n    display: flex;\n    color: #707070; }\n  body #item-price {\n    border-left: 1px solid #707070;\n    border-right: 1px solid #707070; }\n  body #showmore {\n    width: 50%;\n    align-self: center;\n    font-size: 20px;\n    color: #707070; }\n  body #showmore:hover {\n    cursor: pointer;\n    box-shadow: -1px 2px 10px 0px grey; }\n", ""]);
 
 // exports
 
@@ -28345,18 +28344,6 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-// import initialState from './dummydata';
-
-// const initialState = {
-//   searchResults: {
-//     hits: [],
-//     nbHits: 0,
-//     processingTimeMS: 0,
-//     facets: [],
-//     getFacetValues: {}
-//   }
-// };
-
 var algoliasearch = __webpack_require__(206);
 var algoliasearchHelper = __webpack_require__(227);
 var client = algoliasearch('KBNJ9HM3SF', 'ea8fd6f86e6d428e54255b7707770011');
@@ -28414,17 +28401,6 @@ var AppContainer = function (_Component) {
       var currentPage = helper.getPage();
       helper.setPage(currentPage).nextPage().search();
     }
-
-    // filterByRating(){
-    //   console.log('will filter')
-    //   // helper.addNumericRefinement('stars_count', '>', 2)
-    // }
-
-    // getFacetValues(){
-    //   this.state.searchResults.getFacetValues('food_type', {sortBy: ['count:desc', 'selected']});
-    // }
-
-
   }, {
     key: 'render',
     value: function render() {
@@ -29091,20 +29067,20 @@ function ResultItem(props) {
           { id: 'item-info' },
           _react2.default.createElement(
             'div',
-            { className: 'row no-gutters first-row justify-content-start' },
+            { className: 'row first-row justify-content-start' },
             _react2.default.createElement(
               'div',
-              { className: 'col-2 star-count' },
+              { className: 'col-md-auto star-count' },
               starsCount
             ),
             _react2.default.createElement(
               'div',
-              { className: 'col-lg-3 stars-rating' },
+              { className: 'col-md-4 stars-rating' },
               _react2.default.createElement(_Stars2.default, { starNumber: starsCount })
             ),
             _react2.default.createElement(
               'div',
-              { className: 'col-3 reviews-count' },
+              { className: 'col-md-auto reviews-count' },
               '(',
               reviewsCount,
               ' Reviews)'
@@ -29115,17 +29091,17 @@ function ResultItem(props) {
             { className: 'row second-row justify-content-start' },
             _react2.default.createElement(
               'div',
-              { className: 'col-md-auto' },
+              { className: 'col' },
               foodType
             ),
             _react2.default.createElement(
               'div',
-              { id: 'item-price', className: 'col-md-auto' },
+              { id: 'item-price', className: 'col' },
               priceRange
             ),
             _react2.default.createElement(
               'div',
-              { className: 'col-md-auto' },
+              { className: 'col' },
               neighborhood
             )
           )

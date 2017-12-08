@@ -16,25 +16,25 @@ export default function ResultItem (props){
         <div className="media-body">
           <h5 className="mt-0">{name}</h5>
           <div id="item-info">
-            <div className="row no-gutters first-row justify-content-start">
-              <div className="col-2 star-count">
+            <div className="row first-row justify-content-start">
+              <div className="col-md-auto star-count">
                 {starsCount}
               </div>
-              <div className="col-lg-3 stars-rating">
+              <div className="col-md-4 stars-rating">
                 <Stars starNumber={starsCount} />
               </div>
-              <div className="col-3 reviews-count">
+              <div className="col-md-auto reviews-count">
                 ({reviewsCount} Reviews)
               </div>
             </div>
             <div className="row second-row justify-content-start">
-              <div className="col-md-auto">
+              <div className="col">
                 {foodType}
               </div>
-              <div id="item-price" className="col-md-auto">
+              <div id="item-price" className="col">
                 {priceRange}
               </div>
-              <div className="col-md-auto">
+              <div className="col">
                 {neighborhood}
               </div>
             </div>
