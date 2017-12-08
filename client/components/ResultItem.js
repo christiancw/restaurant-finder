@@ -10,31 +10,31 @@ export default function ResultItem (props){
   const priceRange = props.restaurantData.price_range;
   const reviewsCount = props.restaurantData.reviews_count;
   return (
-    <div id="result-item">
+    <div className="result-item">
       <div className="media">
-        <img className="align-self-center mr-3" src={imageURL} alt="Generic placeholder image" />
+        <img className="thumbnail align-self-center mr-3" src={imageURL} alt="Generic placeholder image" />
         <div className="media-body">
           <h5 className="mt-0">{name}</h5>
-          <div>
-            <div className="row first-row">
-              <div className="col-2">
+          <div id="item-info">
+            <div className="row no-gutters first-row justify-content-start">
+              <div className="col-2 star-count">
                 {starsCount}
               </div>
-              <div className="col-4">
+              <div className="col-lg-3 stars-rating">
                 <Stars starNumber={starsCount} />
               </div>
-              <div className="col-6">
+              <div className="col-3 reviews-count">
                 ({reviewsCount} Reviews)
               </div>
             </div>
-            <div className="row">
-              <div className="col">
+            <div className="row second-row justify-content-start">
+              <div className="col-md-auto">
                 {foodType}
               </div>
-              <div className="col">
+              <div id="item-price" className="col-md-auto">
                 {priceRange}
               </div>
-              <div className="col">
+              <div className="col-md-auto">
                 {neighborhood}
               </div>
             </div>

@@ -77,9 +77,9 @@ export default class AppContainer extends Component {
     const nextPage = this.nextPage;
     // const getFacetValues = this.getFacetValues;
     return (
-      <div>
+      <div id="main-background">
         {searchResults ?
-          <div className="container">
+          <div className="container main-container">
             <Header setQuery={setQuery} />
             <div className="row">
               <Sidebar

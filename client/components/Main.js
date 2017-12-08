@@ -14,7 +14,7 @@ export default class Main extends Component {
     console.log('props', this.props);
     const nextPage = this.props.nextPage;
     return (
-      <div className="col-9" id="main">
+      <div className="col-md-8" id="main">
         <Stats
           number={this.props.searchResults.nbHits}
           processingTime={this.props.searchResults.processingTimeMS}

@@ -45,7 +45,7 @@ export default class Sidebar extends Component {
     const handlePaymentClick = this.handlePaymentClick;
     const filterByRating = this.filterByRating;
     return (
-      <div className="col-3" id="sidebar">
+      <div className="col-md-4" id="sidebar">
         {foodTypes ?
           <Cuisine
             foodTypes={foodTypes}
@@ -60,6 +60,6 @@ export default class Sidebar extends Component {
             />
         : null}
       </div>
-    )
+    );
   }
 }

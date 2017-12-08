@@ -10446,7 +10446,7 @@ exports = module.exports = __webpack_require__(175)(undefined);
 
 
 // module
-exports.push([module.i, "body {\n  background-size: cover;\n  width: 100%;\n  margin: 0;\n  font-family: \"Helvetica Neue\"; }\n  body #header {\n    background-color: #1C688E; }\n  body .nav {\n    background-color: #1C688E; }\n  body #sidebar {\n    background-color: white;\n    border: 2px solid gray; }\n  body #cuisine {\n    border-bottom: 1px solid black; }\n  body .star-container {\n    position: absolute;\n    height: 15px; }\n  body .stars-box {\n    display: block;\n    position: static;\n    height: 20px; }\n  body .filled-star {\n    z-index: 1; }\n  body .sidebar-option:hover {\n    background-color: #2897C5; }\n  body #main {\n    background-color: white;\n    border: 2px solid gray;\n    display: flex;\n    flex-direction: column; }\n  body .first-row {\n    display: flex;\n    justify-content: space-around; }\n  body #showmore {\n    width: 50%;\n    align-self: center; }\n", ""]);
+exports.push([module.i, "html {\n  height: 100%; }\n\nbody {\n  background-size: cover;\n  width: 100%;\n  margin: 0;\n  font-family: \"Helvetica Neue\"; }\n  body #main-background {\n    background-image: url(\"background.png\");\n    padding-top: 20px; }\n  body .main-container {\n    box-shadow: 0 4px 7px 4px rgba(0, 0, 0, 0.2); }\n  body #header {\n    background-color: #1C688E;\n    padding-top: 15px;\n    padding-bottom: 15px; }\n  body .nav {\n    background-color: #1C688E; }\n  body #sidebar {\n    padding-top: 15px;\n    background-color: white;\n    border-right: 0.5px solid gray; }\n  body .one-row {\n    display: flex;\n    flex-direction: row;\n    justify-content: space-between; }\n  body #ratings {\n    margin-top: 20px; }\n  body .star-container {\n    position: absolute;\n    height: 15px; }\n  body .stars-box {\n    display: block;\n    position: static;\n    height: 20px; }\n  body .filled-star {\n    z-index: 1; }\n  body .sidebar-option:hover {\n    background-color: #2897C5;\n    color: white;\n    cursor: pointer; }\n  body .sidebar-option {\n    padding-left: 2%;\n    padding-right: 2%;\n    border-radius: 1px; }\n  body #payment {\n    margin-top: 20px; }\n  body #main {\n    background-color: white;\n    display: flex;\n    flex-direction: column; }\n  body #stats {\n    margin-top: 15px;\n    margin-bottom: 15px; }\n  body #stat-text {\n    font-weight: bold; }\n  body .result-item {\n    margin-bottom: 25px; }\n    body .result-item .thumbnail {\n      height: 100px;\n      width: 100px; }\n  body #item-info {\n    margin-top: 10px; }\n  body .first-row {\n    display: flex;\n    font-size: 15px;\n    margin-bottom: 6px; }\n  body .reviews-count {\n    color: #707070;\n    padding-left: 0; }\n  body .star-count {\n    color: #f4b342;\n    padding-right: 0; }\n  body .stars-rating {\n    padding-right: 0; }\n  body .stars-rating .stars-box:hover {\n    background-color: transparent;\n    cursor: default; }\n  body .stars-rating .stars-box {\n    padding-right: 0; }\n  body .second-row {\n    font-size: 15px;\n    display: flex;\n    color: #707070; }\n  body #item-price {\n    border-left: 1px solid #707070;\n    border-right: 1px solid #707070; }\n  body #showmore {\n    width: 50%;\n    align-self: center; }\n  body #showmore:hover {\n    cursor: pointer;\n    box-shadow: -1px 2px 10px 0px grey; }\n", ""]);
 
 // exports
 
@@ -28434,10 +28434,10 @@ var AppContainer = function (_Component) {
       // const getFacetValues = this.getFacetValues;
       return _react2.default.createElement(
         'div',
-        null,
+        { id: 'main-background' },
         searchResults ? _react2.default.createElement(
           'div',
-          { className: 'container' },
+          { className: 'container main-container' },
           _react2.default.createElement(_Header2.default, { setQuery: setQuery }),
           _react2.default.createElement(
             'div',
@@ -28647,7 +28647,7 @@ var Sidebar = function (_Component) {
       var filterByRating = this.filterByRating;
       return _react2.default.createElement(
         'div',
-        { className: 'col-3', id: 'sidebar' },
+        { className: 'col-md-4', id: 'sidebar' },
         foodTypes ? _react2.default.createElement(_Cuisine2.default, {
           foodTypes: foodTypes,
           handleClick: handleClick
@@ -28736,8 +28736,12 @@ function CuisineType(props) {
     { className: "cuisine-type" },
     _react2.default.createElement(
       "div",
-      { onClick: handleClick, id: props.type, className: "sidebar-option" },
-      props.type,
+      { onClick: handleClick, id: props.type, className: "sidebar-option one-row" },
+      _react2.default.createElement(
+        "span",
+        null,
+        props.type
+      ),
       _react2.default.createElement(
         "span",
         null,
@@ -28781,7 +28785,7 @@ function RatingsFilter(props) {
   var filterByRating = props.filterByRating;
   return _react2.default.createElement(
     'div',
-    { id: 'stars' },
+    { id: 'ratings' },
     _react2.default.createElement(
       'h6',
       null,
@@ -28873,9 +28877,17 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 function PaymentOption(props) {
   return _react2.default.createElement(
     "div",
-    { className: "sidebar-option", id: props.type, onClick: props.handleClick },
-    props.type,
-    props.count
+    { className: "sidebar-option one-row", id: props.type, onClick: props.handleClick },
+    _react2.default.createElement(
+      "span",
+      null,
+      props.type
+    ),
+    _react2.default.createElement(
+      "span",
+      null,
+      props.count
+    )
   );
 }
 
@@ -28935,7 +28947,7 @@ var Main = function (_Component) {
       var nextPage = this.props.nextPage;
       return _react2.default.createElement(
         'div',
-        { className: 'col-9', id: 'main' },
+        { className: 'col-md-8', id: 'main' },
         _react2.default.createElement(_Stats2.default, {
           number: this.props.searchResults.nbHits,
           processingTime: this.props.searchResults.processingTimeMS
@@ -28973,13 +28985,22 @@ function Stats(props) {
   var number = props.number,
       processingTime = props.processingTime;
 
+  var statText = number + " results found ";
   return _react2.default.createElement(
     "div",
     { id: "stats" },
-    number,
-    " results found in 0.000",
-    processingTime,
-    " seconds."
+    _react2.default.createElement(
+      "span",
+      { id: "stat-text" },
+      statText
+    ),
+    _react2.default.createElement(
+      "span",
+      null,
+      "in 0.000",
+      processingTime,
+      " seconds."
+    )
   );
 }
 
@@ -29052,11 +29073,11 @@ function ResultItem(props) {
   var reviewsCount = props.restaurantData.reviews_count;
   return _react2.default.createElement(
     'div',
-    { id: 'result-item' },
+    { className: 'result-item' },
     _react2.default.createElement(
       'div',
       { className: 'media' },
-      _react2.default.createElement('img', { className: 'align-self-center mr-3', src: imageURL, alt: 'Generic placeholder image' }),
+      _react2.default.createElement('img', { className: 'thumbnail align-self-center mr-3', src: imageURL, alt: 'Generic placeholder image' }),
       _react2.default.createElement(
         'div',
         { className: 'media-body' },
@@ -29067,23 +29088,23 @@ function ResultItem(props) {
         ),
         _react2.default.createElement(
           'div',
-          null,
+          { id: 'item-info' },
           _react2.default.createElement(
             'div',
-            { className: 'row first-row' },
+            { className: 'row no-gutters first-row justify-content-start' },
             _react2.default.createElement(
               'div',
-              { className: 'col-2' },
+              { className: 'col-2 star-count' },
               starsCount
             ),
             _react2.default.createElement(
               'div',
-              { className: 'col-4' },
+              { className: 'col-lg-3 stars-rating' },
               _react2.default.createElement(_Stars2.default, { starNumber: starsCount })
             ),
             _react2.default.createElement(
               'div',
-              { className: 'col-6' },
+              { className: 'col-3 reviews-count' },
               '(',
               reviewsCount,
               ' Reviews)'
@@ -29091,20 +29112,20 @@ function ResultItem(props) {
           ),
           _react2.default.createElement(
             'div',
-            { className: 'row' },
+            { className: 'row second-row justify-content-start' },
             _react2.default.createElement(
               'div',
-              { className: 'col' },
+              { className: 'col-md-auto' },
               foodType
             ),
             _react2.default.createElement(
               'div',
-              { className: 'col' },
+              { id: 'item-price', className: 'col-md-auto' },
               priceRange
             ),
             _react2.default.createElement(
               'div',
-              { className: 'col' },
+              { className: 'col-md-auto' },
               neighborhood
             )
           )
